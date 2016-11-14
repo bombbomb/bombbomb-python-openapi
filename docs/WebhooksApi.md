@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**add_web_hook**](WebhooksApi.md#add_web_hook) | **POST** /webhook | Add Webhook
 [**delete_web_hook**](WebhooksApi.md#delete_web_hook) | **DELETE** /webhook/{hookId} | Deletes Webhook
 [**get_web_hooks**](WebhooksApi.md#get_web_hooks) | **GET** /webhook/ | Lists Webhooks
+[**list_web_hook_events**](WebhooksApi.md#list_web_hook_events) | **GET** /webhook/events | Describe WebHook Events
 [**send_webhook_example**](WebhooksApi.md#send_webhook_example) | **POST** /webhook/test | Sends test Webhook
 
 
@@ -55,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -105,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -151,7 +152,49 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_web_hook_events**
+> list_web_hook_events()
+
+Describe WebHook Events
+
+Returns example Webhook events for each kind of possible event.
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = bombbomb.WebhooksApi()
+
+try: 
+    # Describe WebHook Events
+    api_instance.list_web_hook_events()
+except ApiException as e:
+    print "Exception when calling WebhooksApi->list_web_hook_events: %s\n" % e
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -196,7 +239,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
