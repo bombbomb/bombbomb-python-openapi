@@ -11,11 +11,11 @@ Method | HTTP request | Description
 
 
 # **create_printing_press_email**
-> create_printing_press_email(template_id, content, replace, video_id=video_id, subject_line=subject_line)
+> create_printing_press_email(template_id, content, email_id=email_id, video_id=video_id, subject_line=subject_line)
 
 Create an Email with Printing Press
 
-Prints an email using the template id and content to the users account.If a video id, is include it will replace any video placeholders with that video.
+Prints an email using the template id and content to the users account.If a video id is included, it will replace any video placeholders with that video.
 
 ### Example 
 ```python
@@ -31,13 +31,13 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 api_instance = bombbomb.EmailsApi()
 template_id = 'template_id_example' # str | The template id to be printed.
 content = 'content_example' # str | The content of the email.
-replace = true # bool | Set whether to replace video placeholders with video id.
+email_id = 'email_id_example' # str | The email id to be printed to. (optional)
 video_id = 'video_id_example' # str | A video to replace video place holders with. (optional)
 subject_line = 'subject_line_example' # str | The subject line to be printed. (optional)
 
 try: 
     # Create an Email with Printing Press
-    api_instance.create_printing_press_email(template_id, content, replace, video_id=video_id, subject_line=subject_line)
+    api_instance.create_printing_press_email(template_id, content, email_id=email_id, video_id=video_id, subject_line=subject_line)
 except ApiException as e:
     print "Exception when calling EmailsApi->create_printing_press_email: %s\n" % e
 ```
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **template_id** | **str**| The template id to be printed. | 
  **content** | **str**| The content of the email. | 
- **replace** | **bool**| Set whether to replace video placeholders with video id. | 
+ **email_id** | **str**| The email id to be printed to. | [optional] 
  **video_id** | **str**| A video to replace video place holders with. | [optional] 
  **subject_line** | **str**| The subject line to be printed. | [optional] 
 

@@ -22,32 +22,34 @@
     limitations under the License.
 """
 
+from __future__ import absolute_import
+
+import os
 import sys
-from setuptools import setup, find_packages
+import unittest
 
-NAME = "bombbomb"
-VERSION = "2.0.24005"
+import bombbomb
+from bombbomb.rest import ApiException
+from bombbomb.apis.files_api import FilesApi
 
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil"]
+class TestFilesApi(unittest.TestCase):
+    """ FilesApi unit test stubs """
 
-setup(
-    name=NAME,
-    version=VERSION,
-    description="BombBomb",
-    author_email="",
-    url="",
-    keywords=["Swagger", "BombBomb"],
-    install_requires=REQUIRES,
-    packages=find_packages(),
-    include_package_data=True,
-    long_description="""\
-    We make it easy to build relationships using simple videos.
-    """
-)
+    def setUp(self):
+        self.api = bombbomb.apis.files_api.FilesApi()
+
+    def tearDown(self):
+        pass
+
+    def test_doc_host_delete(self):
+        """
+        Test case for doc_host_delete
+
+        Deletes users file
+        """
+        pass
+
+
+if __name__ == '__main__':
+    unittest.main()

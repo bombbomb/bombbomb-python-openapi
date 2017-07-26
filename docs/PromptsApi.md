@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **create_prompt_bot**
-> PromptBotBot create_prompt_bot(list_id, email_id, end_date, prompt_subject, prompt_body, bot_type_id, template_id)
+> PromptBot create_prompt_bot(list_id, email_id, name, subject, content, contact_field_value_column, bot_type_id, template_id, video_id=video_id, end_date=end_date)
 
 Create a running Prompt Bot for a list
 
@@ -37,15 +37,18 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 api_instance = bombbomb.PromptsApi()
 list_id = 'list_id_example' # str | The list id to attach the bot to.
 email_id = 'email_id_example' # str | The default email to use.
-end_date = 'end_date_example' # str | The time frame to complete sending to the list.
-prompt_subject = 'prompt_subject_example' # str | The prompt subject.
-prompt_body = 'prompt_body_example' # str | The prompt script.
+name = 'name_example' # str | The name of the bot.
+subject = 'subject_example' # str | The subject of the default email.
+content = 'content_example' # str | The content used in the email.
+contact_field_value_column = 'contact_field_value_column_example' # str | The custom field value column with dates for this bot.
 bot_type_id = 'bot_type_id_example' # str | The type of bot to create.
 template_id = 'template_id_example' # str | The template used to create the email id.
+video_id = 'video_id_example' # str | The video used in the email. (optional)
+end_date = 'end_date_example' # str | The time frame to complete sending to the list. (optional)
 
 try: 
     # Create a running Prompt Bot for a list
-    api_response = api_instance.create_prompt_bot(list_id, email_id, end_date, prompt_subject, prompt_body, bot_type_id, template_id)
+    api_response = api_instance.create_prompt_bot(list_id, email_id, name, subject, content, contact_field_value_column, bot_type_id, template_id, video_id=video_id, end_date=end_date)
     pprint(api_response)
 except ApiException as e:
     print "Exception when calling PromptsApi->create_prompt_bot: %s\n" % e
@@ -57,15 +60,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **str**| The list id to attach the bot to. | 
  **email_id** | **str**| The default email to use. | 
- **end_date** | **str**| The time frame to complete sending to the list. | 
- **prompt_subject** | **str**| The prompt subject. | 
- **prompt_body** | **str**| The prompt script. | 
+ **name** | **str**| The name of the bot. | 
+ **subject** | **str**| The subject of the default email. | 
+ **content** | **str**| The content used in the email. | 
+ **contact_field_value_column** | **str**| The custom field value column with dates for this bot. | 
  **bot_type_id** | **str**| The type of bot to create. | 
  **template_id** | **str**| The template used to create the email id. | 
+ **video_id** | **str**| The video used in the email. | [optional] 
+ **end_date** | **str**| The time frame to complete sending to the list. | [optional] 
 
 ### Return type
 
-[**PromptBotBot**](PromptBotBot.md)
+[**PromptBot**](PromptBot.md)
 
 ### Authorization
 
@@ -175,7 +181,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_prompt_bots**
-> list[PromptBotBot] get_prompt_bots()
+> list[PromptBot] get_prompt_bots()
 
 List Prompt Bots
 
@@ -207,7 +213,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**list[PromptBotBot]**](PromptBotBot.md)
+[**list[PromptBot]**](PromptBot.md)
 
 ### Authorization
 
@@ -362,7 +368,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **respond_to_video_email_prompt**
-> VideoEmailPrompt respond_to_video_email_prompt(id, choice, video_id=video_id, email_id=email_id)
+> VideoEmailPrompt respond_to_video_email_prompt(id, choice, video_id=video_id, email_id=email_id, subject=subject)
 
 Respond to a prompt
 
@@ -378,13 +384,14 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = bombbomb.PromptsApi()
 id = 'id_example' # str | The id of the prompt.
-choice = 'choice_example' # str | The users' selection. Can be: WithVideo, WithEmail, Cancel
+choice = 'choice_example' # str | The users' selection. Can be: WithVideo, WithEmail, Cancel, Restore, Reset, Manual
 video_id = 'video_id_example' # str | The id of the video. (optional)
-email_id = 'email_id_example' # str | The id of the video. (optional)
+email_id = 'email_id_example' # str | The id of the email. (optional)
+subject = 'subject_example' # str | The subject of the email (optional)
 
 try: 
     # Respond to a prompt
-    api_response = api_instance.respond_to_video_email_prompt(id, choice, video_id=video_id, email_id=email_id)
+    api_response = api_instance.respond_to_video_email_prompt(id, choice, video_id=video_id, email_id=email_id, subject=subject)
     pprint(api_response)
 except ApiException as e:
     print "Exception when calling PromptsApi->respond_to_video_email_prompt: %s\n" % e
@@ -395,9 +402,10 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The id of the prompt. | 
- **choice** | **str**| The users&#39; selection. Can be: WithVideo, WithEmail, Cancel | 
+ **choice** | **str**| The users&#39; selection. Can be: WithVideo, WithEmail, Cancel, Restore, Reset, Manual | 
  **video_id** | **str**| The id of the video. | [optional] 
- **email_id** | **str**| The id of the video. | [optional] 
+ **email_id** | **str**| The id of the email. | [optional] 
+ **subject** | **str**| The subject of the email | [optional] 
 
 ### Return type
 
@@ -415,7 +423,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_prompt_bot**
-> PromptBotBot update_prompt_bot(id, email_id=email_id, end_date=end_date, status=status)
+> PromptBot update_prompt_bot(id, list_id, email_id, name, subject, content, contact_field_value_column, template_id, video_id=video_id, end_date=end_date, status=status)
 
 Update Prompt Bot
 
@@ -434,13 +442,20 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # create an instance of the API class
 api_instance = bombbomb.PromptsApi()
 id = 'id_example' # str | The bot id.
-email_id = 'email_id_example' # str | The default email to use. (optional)
+list_id = 'list_id_example' # str | The list id to attach the bot to.
+email_id = 'email_id_example' # str | The default email to use.
+name = 'name_example' # str | The name of the bot.
+subject = 'subject_example' # str | The subject of the default email.
+content = 'content_example' # str | The content used in the default email.
+contact_field_value_column = 'contact_field_value_column_example' # str | The custom field value column with dates for this bot.
+template_id = 'template_id_example' # str | The template used to create the email id.
+video_id = 'video_id_example' # str | The video used in the default email. (optional)
 end_date = 'end_date_example' # str | The time frame to complete sending to the list. (optional)
 status = 'status_example' # str | The status of the bot. (optional)
 
 try: 
     # Update Prompt Bot
-    api_response = api_instance.update_prompt_bot(id, email_id=email_id, end_date=end_date, status=status)
+    api_response = api_instance.update_prompt_bot(id, list_id, email_id, name, subject, content, contact_field_value_column, template_id, video_id=video_id, end_date=end_date, status=status)
     pprint(api_response)
 except ApiException as e:
     print "Exception when calling PromptsApi->update_prompt_bot: %s\n" % e
@@ -451,13 +466,20 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The bot id. | 
- **email_id** | **str**| The default email to use. | [optional] 
+ **list_id** | **str**| The list id to attach the bot to. | 
+ **email_id** | **str**| The default email to use. | 
+ **name** | **str**| The name of the bot. | 
+ **subject** | **str**| The subject of the default email. | 
+ **content** | **str**| The content used in the default email. | 
+ **contact_field_value_column** | **str**| The custom field value column with dates for this bot. | 
+ **template_id** | **str**| The template used to create the email id. | 
+ **video_id** | **str**| The video used in the default email. | [optional] 
  **end_date** | **str**| The time frame to complete sending to the list. | [optional] 
  **status** | **str**| The status of the bot. | [optional] 
 
 ### Return type
 
-[**PromptBotBot**](PromptBotBot.md)
+[**PromptBot**](PromptBot.md)
 
 ### Authorization
 
@@ -471,7 +493,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_prompt_campaign**
-> update_prompt_campaign(client_group_id, branded_template_id=branded_template_id, personal_template_id=personal_template_id, enabled=enabled)
+> update_prompt_campaign(client_group_id, branded_template_id=branded_template_id, personal_template_id=personal_template_id, enabled=enabled, auto_shares=auto_shares)
 
 Update Prompt Campaign
 
@@ -493,10 +515,11 @@ client_group_id = 'client_group_id_example' # str | The client group of the camp
 branded_template_id = 'branded_template_id_example' # str | The template to use for branded feel emails. (optional)
 personal_template_id = 'personal_template_id_example' # str | The template to use for personal feel emails. (optional)
 enabled = true # bool | Set whether the user is able to start receiving prompts. (optional)
+auto_shares = 'auto_shares_example' # str | These are what we are autosharing to (optional)
 
 try: 
     # Update Prompt Campaign
-    api_instance.update_prompt_campaign(client_group_id, branded_template_id=branded_template_id, personal_template_id=personal_template_id, enabled=enabled)
+    api_instance.update_prompt_campaign(client_group_id, branded_template_id=branded_template_id, personal_template_id=personal_template_id, enabled=enabled, auto_shares=auto_shares)
 except ApiException as e:
     print "Exception when calling PromptsApi->update_prompt_campaign: %s\n" % e
 ```
@@ -509,6 +532,7 @@ Name | Type | Description  | Notes
  **branded_template_id** | **str**| The template to use for branded feel emails. | [optional] 
  **personal_template_id** | **str**| The template to use for personal feel emails. | [optional] 
  **enabled** | **bool**| Set whether the user is able to start receiving prompts. | [optional] 
+ **auto_shares** | **str**| These are what we are autosharing to | [optional] 
 
 ### Return type
 

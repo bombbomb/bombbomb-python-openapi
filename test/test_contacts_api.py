@@ -22,32 +22,34 @@
     limitations under the License.
 """
 
+from __future__ import absolute_import
+
+import os
 import sys
-from setuptools import setup, find_packages
+import unittest
 
-NAME = "bombbomb"
-VERSION = "2.0.24005"
+import bombbomb
+from bombbomb.rest import ApiException
+from bombbomb.apis.contacts_api import ContactsApi
 
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["urllib3 >= 1.15", "six >= 1.10", "certifi", "python-dateutil"]
+class TestContactsApi(unittest.TestCase):
+    """ ContactsApi unit test stubs """
 
-setup(
-    name=NAME,
-    version=VERSION,
-    description="BombBomb",
-    author_email="",
-    url="",
-    keywords=["Swagger", "BombBomb"],
-    install_requires=REQUIRES,
-    packages=find_packages(),
-    include_package_data=True,
-    long_description="""\
-    We make it easy to build relationships using simple videos.
-    """
-)
+    def setUp(self):
+        self.api = bombbomb.apis.contacts_api.ContactsApi()
+
+    def tearDown(self):
+        pass
+
+    def test_delete_contacts(self):
+        """
+        Test case for delete_contacts
+
+        Delete Contacts
+        """
+        pass
+
+
+if __name__ == '__main__':
+    unittest.main()

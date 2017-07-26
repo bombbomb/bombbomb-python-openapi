@@ -8,13 +8,16 @@ Method | HTTP request | Description
 [**cancel_jericho_send**](TeamsApi.md#cancel_jericho_send) | **DELETE** /team/{teamId}/jericho/{jerichoId} | Cancel a Jericho Send
 [**create_subteam**](TeamsApi.md#create_subteam) | **POST** /team/{teamId}/subteam | Add a Subteam
 [**delete_subteam**](TeamsApi.md#delete_subteam) | **DELETE** /team/{teamId}/subteam | Delete Subteam
+[**get_all_client_group_associations**](TeamsApi.md#get_all_client_group_associations) | **GET** /team/associations/ | Lists team associations
 [**get_client_group_assets**](TeamsApi.md#get_client_group_assets) | **GET** /team/assets/ | Lists team assets
 [**get_jericho_sends**](TeamsApi.md#get_jericho_sends) | **GET** /team/{teamId}/jericho | List Jericho Sends
 [**get_jericho_stats**](TeamsApi.md#get_jericho_stats) | **GET** /team/{teamId}/jericho/{jerichoId}/performance | Gets Jericho performance statistics
 [**get_subteams**](TeamsApi.md#get_subteams) | **GET** /team/{teamId}/subteam | List Subteams
 [**queue_jericho_send**](TeamsApi.md#queue_jericho_send) | **POST** /team/{teamId}/jericho | Creates a Jericho send.
 [**remove_member_from_team**](TeamsApi.md#remove_member_from_team) | **DELETE** /team/{teamId}/member/{userId} | Remove Member from Team
+[**update_jericho_prompt_send**](TeamsApi.md#update_jericho_prompt_send) | **PUT** /team/{teamId}/jericho/{jerichoId} | Updates the Jericho Prompt Settings
 [**update_team**](TeamsApi.md#update_team) | **POST** /team/{teamId} | Update a team
+[**update_team_member**](TeamsApi.md#update_team_member) | **PUT** /team/{teamId}/member | Update Member of Team
 
 
 # **add_team_member**
@@ -214,6 +217,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 **str**
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_all_client_group_associations**
+> get_all_client_group_associations(client_id)
+
+Lists team associations
+
+Returns a collection of team associations for a given user
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+client_id = 'client_id_example' # str | The clientId requesting group associations.
+
+try: 
+    # Lists team associations
+    api_instance.get_all_client_group_associations(client_id)
+except ApiException as e:
+    print "Exception when calling TeamsApi->get_all_client_group_associations: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **client_id** | **str**| The clientId requesting group associations. | 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -542,6 +594,57 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_jericho_prompt_send**
+> update_jericho_prompt_send(team_id, jericho_id)
+
+Updates the Jericho Prompt Settings
+
+Updates the prompt settings based on the original email id
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+team_id = 'team_id_example' # str | The team id
+jericho_id = 'jericho_id_example' # str | ID of the Jericho job
+
+try: 
+    # Updates the Jericho Prompt Settings
+    api_instance.update_jericho_prompt_send(team_id, jericho_id)
+except ApiException as e:
+    print "Exception when calling TeamsApi->update_jericho_prompt_send: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **str**| The team id | 
+ **jericho_id** | **str**| ID of the Jericho job | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_team**
 > TeamPublicRepresentation update_team(team_id, name=name)
 
@@ -582,6 +685,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TeamPublicRepresentation**](TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_team_member**
+> update_team_member(team_id, user_id, admin)
+
+Update Member of Team
+
+Updates a member of a team
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+team_id = 'team_id_example' # str | The team id
+user_id = 'user_id_example' # str | The user id of the member being added to the team.
+admin = true # bool | Set if the user is an admin of this team.
+
+try: 
+    # Update Member of Team
+    api_instance.update_team_member(team_id, user_id, admin)
+except ApiException as e:
+    print "Exception when calling TeamsApi->update_team_member: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **str**| The team id | 
+ **user_id** | **str**| The user id of the member being added to the team. | 
+ **admin** | **bool**| Set if the user is an admin of this team. | 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

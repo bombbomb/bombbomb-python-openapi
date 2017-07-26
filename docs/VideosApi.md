@@ -4,10 +4,61 @@ All URIs are relative to *https://api.bombbomb.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_video_encoding_status**](VideosApi.md#get_video_encoding_status) | **GET** /videos/{videoId}/status | Video Encoding Status
 [**get_video_recorder**](VideosApi.md#get_video_recorder) | **GET** /videos/live/getRecorder | Get Live Video Recorder HTML
 [**mark_live_recording_complete**](VideosApi.md#mark_live_recording_complete) | **POST** /videos/live/markComplete | Completes a live recording
 [**sign_upload**](VideosApi.md#sign_upload) | **POST** /video/signedUpload | Generate Signed Url
 
+
+# **get_video_encoding_status**
+> VideoEncodingStatusResponse get_video_encoding_status(video_id)
+
+Video Encoding Status
+
+Get information about the current state of encoding for a given video id.
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.VideosApi()
+video_id = 'video_id_example' # str | The video's id.
+
+try: 
+    # Video Encoding Status
+    api_response = api_instance.get_video_encoding_status(video_id)
+    pprint(api_response)
+except ApiException as e:
+    print "Exception when calling VideosApi->get_video_encoding_status: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **video_id** | **str**| The video&#39;s id. | 
+
+### Return type
+
+[**VideoEncodingStatusResponse**](VideoEncodingStatusResponse.md)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_video_recorder**
 > VideoRecorderMethodResponse get_video_recorder(width=width, video_id=video_id)
