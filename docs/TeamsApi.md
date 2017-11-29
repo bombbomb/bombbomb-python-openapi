@@ -10,11 +10,16 @@ Method | HTTP request | Description
 [**delete_subteam**](TeamsApi.md#delete_subteam) | **DELETE** /team/{teamId}/subteam | Delete Subteam
 [**get_all_client_group_associations**](TeamsApi.md#get_all_client_group_associations) | **GET** /team/associations/ | Lists team associations
 [**get_client_group_assets**](TeamsApi.md#get_client_group_assets) | **GET** /team/assets/ | Lists team assets
+[**get_client_group_statistics**](TeamsApi.md#get_client_group_statistics) | **GET** /team/{teamId}/stats | Get Team statistics
 [**get_jericho_sends**](TeamsApi.md#get_jericho_sends) | **GET** /team/{teamId}/jericho | List Jericho Sends
 [**get_jericho_stats**](TeamsApi.md#get_jericho_stats) | **GET** /team/{teamId}/jericho/{jerichoId}/performance | Gets Jericho performance statistics
+[**get_paged_client_group_members**](TeamsApi.md#get_paged_client_group_members) | **GET** /team/{teamId}/members | List Team Members
 [**get_subteams**](TeamsApi.md#get_subteams) | **GET** /team/{teamId}/subteam | List Subteams
+[**get_team_prompt_aggregate_stats**](TeamsApi.md#get_team_prompt_aggregate_stats) | **GET** /team/{clientGroupId}/campaign/stats | Get aggregate stats for campaigns
+[**get_team_prompt_campaigns**](TeamsApi.md#get_team_prompt_campaigns) | **GET** /team/{clientGroupId}/campaign | Get campaigns for team
 [**queue_jericho_send**](TeamsApi.md#queue_jericho_send) | **POST** /team/{teamId}/jericho | Creates a Jericho send.
 [**remove_member_from_team**](TeamsApi.md#remove_member_from_team) | **DELETE** /team/{teamId}/member/{userId} | Remove Member from Team
+[**resend_team_member_invitation**](TeamsApi.md#resend_team_member_invitation) | **POST** /team/{teamId}/{memberUserId}/rewelcome | Resend invite
 [**update_jericho_prompt_send**](TeamsApi.md#update_jericho_prompt_send) | **PUT** /team/{teamId}/jericho/{jerichoId} | Updates the Jericho Prompt Settings
 [**update_team**](TeamsApi.md#update_team) | **POST** /team/{teamId} | Update a team
 [**update_team_member**](TeamsApi.md#update_team_member) | **PUT** /team/{teamId}/member | Update Member of Team
@@ -338,6 +343,57 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_client_group_statistics**
+> get_client_group_statistics(team_id, member_status=member_status)
+
+Get Team statistics
+
+Get top level statistic data for a Team
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+team_id = 'team_id_example' # str | The team id
+member_status = 'member_status_example' # str | The status of members to query for (optional)
+
+try: 
+    # Get Team statistics
+    api_instance.get_client_group_statistics(team_id, member_status=member_status)
+except ApiException as e:
+    print "Exception when calling TeamsApi->get_client_group_statistics: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **str**| The team id | 
+ **member_status** | **str**| The status of members to query for | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_jericho_sends**
 > list[JerichoConfiguration] get_jericho_sends(team_id)
 
@@ -440,6 +496,67 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_paged_client_group_members**
+> get_paged_client_group_members(team_id, page_size, page, status=status, search=search, order_by=order_by, order_direction=order_direction)
+
+List Team Members
+
+Get a paginated listing of Team members
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+team_id = 'team_id_example' # str | The team id
+page_size = 'page_size_example' # str | Amount of records to return in a page.
+page = 'page_example' # str | The page to return.
+status = 'status_example' # str | The status type to filter by. (optional)
+search = 'search_example' # str | Filter results with names that match the search term. (optional)
+order_by = 'order_by_example' # str | Key to order results by (optional)
+order_direction = 'order_direction_example' # str | ASC or DESC (optional)
+
+try: 
+    # List Team Members
+    api_instance.get_paged_client_group_members(team_id, page_size, page, status=status, search=search, order_by=order_by, order_direction=order_direction)
+except ApiException as e:
+    print "Exception when calling TeamsApi->get_paged_client_group_members: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **str**| The team id | 
+ **page_size** | **str**| Amount of records to return in a page. | 
+ **page** | **str**| The page to return. | 
+ **status** | **str**| The status type to filter by. | [optional] 
+ **search** | **str**| Filter results with names that match the search term. | [optional] 
+ **order_by** | **str**| Key to order results by | [optional] 
+ **order_direction** | **str**| ASC or DESC | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_subteams**
 > list[TeamPublicRepresentation] get_subteams(team_id)
 
@@ -478,6 +595,110 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**list[TeamPublicRepresentation]**](TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_team_prompt_aggregate_stats**
+> get_team_prompt_aggregate_stats(client_group_id)
+
+Get aggregate stats for campaigns
+
+Get all the campaigns aggregate stats
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+client_group_id = 'client_group_id_example' # str | ID of the client group association
+
+try: 
+    # Get aggregate stats for campaigns
+    api_instance.get_team_prompt_aggregate_stats(client_group_id)
+except ApiException as e:
+    print "Exception when calling TeamsApi->get_team_prompt_aggregate_stats: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **client_group_id** | **str**| ID of the client group association | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_team_prompt_campaigns**
+> get_team_prompt_campaigns(client_group_id, search_term=search_term, order_by=order_by, asc=asc)
+
+Get campaigns for team
+
+Get campaigns for the team and their stats
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+client_group_id = 'client_group_id_example' # str | ID of the client group association
+search_term = 'search_term_example' # str | The value to search for in prompt subject (optional)
+order_by = 'order_by_example' # str | How to sort the column (optional)
+asc = 'asc_example' # str | Ascending or not (optional)
+
+try: 
+    # Get campaigns for team
+    api_instance.get_team_prompt_campaigns(client_group_id, search_term=search_term, order_by=order_by, asc=asc)
+except ApiException as e:
+    print "Exception when calling TeamsApi->get_team_prompt_campaigns: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **client_group_id** | **str**| ID of the client group association | 
+ **search_term** | **str**| The value to search for in prompt subject | [optional] 
+ **order_by** | **str**| How to sort the column | [optional] 
+ **asc** | **str**| Ascending or not | [optional] 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -594,6 +815,58 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **resend_team_member_invitation**
+> TeamPublicRepresentation resend_team_member_invitation(team_id, member_user_id)
+
+Resend invite
+
+Resend invitation to a member of a team
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+team_id = 'team_id_example' # str | The team id
+member_user_id = 'member_user_id_example' # str | The user id of the member being resent an invitation.
+
+try: 
+    # Resend invite
+    api_response = api_instance.resend_team_member_invitation(team_id, member_user_id)
+    pprint(api_response)
+except ApiException as e:
+    print "Exception when calling TeamsApi->resend_team_member_invitation: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **str**| The team id | 
+ **member_user_id** | **str**| The user id of the member being resent an invitation. | 
+
+### Return type
+
+[**TeamPublicRepresentation**](TeamPublicRepresentation.md)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_jericho_prompt_send**
 > update_jericho_prompt_send(team_id, jericho_id)
 
@@ -646,7 +919,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_team**
-> TeamPublicRepresentation update_team(team_id, name=name)
+> TeamPublicRepresentation update_team(team_id, name=name, state=state)
 
 Update a team
 
@@ -666,10 +939,11 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 api_instance = bombbomb.TeamsApi()
 team_id = 'team_id_example' # str | The team id
 name = 'name_example' # str | The name of the team (optional)
+state = 'state_example' # str | The status of the login permissions (optional)
 
 try: 
     # Update a team
-    api_response = api_instance.update_team(team_id, name=name)
+    api_response = api_instance.update_team(team_id, name=name, state=state)
     pprint(api_response)
 except ApiException as e:
     print "Exception when calling TeamsApi->update_team: %s\n" % e
@@ -681,6 +955,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| The team id | 
  **name** | **str**| The name of the team | [optional] 
+ **state** | **str**| The status of the login permissions | [optional] 
 
 ### Return type
 

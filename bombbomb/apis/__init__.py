@@ -7,6 +7,7 @@ from .contacts_api import ContactsApi
 from .curriculum_api import CurriculumApi
 from .emails_api import EmailsApi
 from .files_api import FilesApi
+from .integrations_api import IntegrationsApi
 from .lists_api import ListsApi
 from .orders_api import OrdersApi
 from .prompts_api import PromptsApi

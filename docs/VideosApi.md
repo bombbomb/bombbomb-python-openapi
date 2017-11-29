@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**get_video_recorder**](VideosApi.md#get_video_recorder) | **GET** /videos/live/getRecorder | Get Live Video Recorder HTML
 [**mark_live_recording_complete**](VideosApi.md#mark_live_recording_complete) | **POST** /videos/live/markComplete | Completes a live recording
 [**sign_upload**](VideosApi.md#sign_upload) | **POST** /video/signedUpload | Generate Signed Url
+[**update_video_thumbnail_v2**](VideosApi.md#update_video_thumbnail_v2) | **PUT** /videos/thumbnail | Upload thumbnail
 
 
 # **get_video_encoding_status**
@@ -211,6 +212,59 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_video_thumbnail_v2**
+> update_video_thumbnail_v2(video_id, thumbnail, custom=custom)
+
+Upload thumbnail
+
+Upload a new video thumbnail
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.VideosApi()
+video_id = 'video_id_example' # str | The id of the video
+thumbnail = 'thumbnail_example' # str | The thumbnail being uploaded
+custom = true # bool | The default email to use. (optional)
+
+try: 
+    # Upload thumbnail
+    api_instance.update_video_thumbnail_v2(video_id, thumbnail, custom=custom)
+except ApiException as e:
+    print "Exception when calling VideosApi->update_video_thumbnail_v2: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **video_id** | **str**| The id of the video | 
+ **thumbnail** | **str**| The thumbnail being uploaded | 
+ **custom** | **bool**| The default email to use. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

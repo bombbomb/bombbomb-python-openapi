@@ -4,17 +4,64 @@ All URIs are relative to *https://api.bombbomb.com/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_facebook_pages**](SocialsApi.md#get_facebook_pages) | **GET** /socials/facebook/pages | Gets facebook pages
 [**get_social_article_properties**](SocialsApi.md#get_social_article_properties) | **GET** /socials/properties | Gets the social email properties
-[**get_social_auto_shares**](SocialsApi.md#get_social_auto_shares) | **GET** /socials/shares | Gets the auto shares from the client group assoc id
-[**get_social_permissions**](SocialsApi.md#get_social_permissions) | **GET** /socials/permissions | Get permissions for social integration
-[**get_social_status**](SocialsApi.md#get_social_status) | **GET** /socials/states | Gets the social state
-[**update_social_auto_shares**](SocialsApi.md#update_social_auto_shares) | **PUT** /socials/shares | Gets the auto shares from the client group assoc id
-[**update_social_message**](SocialsApi.md#update_social_message) | **PUT** /socials/message | Sets the users social message to what they typed in
-[**update_social_status**](SocialsApi.md#update_social_status) | **PUT** /socials/state | Updates the social state for the object
+[**get_social_authorizations**](SocialsApi.md#get_social_authorizations) | **GET** /socials/authorizations | Get authorizations for all social integration
+[**get_social_profile_properties**](SocialsApi.md#get_social_profile_properties) | **GET** /socials/profile | Gets the profile properties
+[**get_social_stats**](SocialsApi.md#get_social_stats) | **GET** /socials/{promptId}/stats | Get social stats for a prompt
+[**post_social_content**](SocialsApi.md#post_social_content) | **POST** /socials/content | Creates social content
+[**update_client_group_send_mechanism**](SocialsApi.md#update_client_group_send_mechanism) | **PUT** /socials/client/sendMechanism | Gets the auto shares from the client group assoc id
+[**update_facebook_pages**](SocialsApi.md#update_facebook_pages) | **PUT** /socials/facebook/pages | Updates facebook page Ids
+[**update_social_content**](SocialsApi.md#update_social_content) | **PUT** /socials/content | Updates social content
 
+
+# **get_facebook_pages**
+> get_facebook_pages()
+
+Gets facebook pages
+
+Gets facebook pages by client id
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.SocialsApi()
+
+try: 
+    # Gets facebook pages
+    api_instance.get_facebook_pages()
+except ApiException as e:
+    print "Exception when calling SocialsApi->get_facebook_pages: %s\n" % e
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_social_article_properties**
-> get_social_article_properties(jericho_id, email_id, originator_id)
+> get_social_article_properties(email_id)
 
 Gets the social email properties
 
@@ -32,13 +79,11 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
 api_instance = bombbomb.SocialsApi()
-jericho_id = 'jericho_id_example' # str | associated jericho Id
 email_id = 'email_id_example' # str | This is the email Id for the email url
-originator_id = 'originator_id_example' # str | This is the originator Id
 
 try: 
     # Gets the social email properties
-    api_instance.get_social_article_properties(jericho_id, email_id, originator_id)
+    api_instance.get_social_article_properties(email_id)
 except ApiException as e:
     print "Exception when calling SocialsApi->get_social_article_properties: %s\n" % e
 ```
@@ -47,9 +92,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **jericho_id** | **str**| associated jericho Id | 
  **email_id** | **str**| This is the email Id for the email url | 
- **originator_id** | **str**| This is the originator Id | 
 
 ### Return type
 
@@ -66,8 +109,204 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_social_auto_shares**
-> get_social_auto_shares(client_group_id)
+# **get_social_authorizations**
+> get_social_authorizations(client_group_id=client_group_id)
+
+Get authorizations for all social integration
+
+Get authorizations and autoshares for all social integration and has redirect for user to login
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.SocialsApi()
+client_group_id = 'client_group_id_example' # str | ID of the client group association (optional)
+
+try: 
+    # Get authorizations for all social integration
+    api_instance.get_social_authorizations(client_group_id=client_group_id)
+except ApiException as e:
+    print "Exception when calling SocialsApi->get_social_authorizations: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **client_group_id** | **str**| ID of the client group association | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_social_profile_properties**
+> get_social_profile_properties(social_type)
+
+Gets the profile properties
+
+Gets the social profile properties
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.SocialsApi()
+social_type = 'social_type_example' # str | The social type
+
+try: 
+    # Gets the profile properties
+    api_instance.get_social_profile_properties(social_type)
+except ApiException as e:
+    print "Exception when calling SocialsApi->get_social_profile_properties: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **social_type** | **str**| The social type | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_social_stats**
+> get_social_stats(prompt_id)
+
+Get social stats for a prompt
+
+Get social stats for a prompt by id
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.SocialsApi()
+prompt_id = 'prompt_id_example' # str | ID of the prompt
+
+try: 
+    # Get social stats for a prompt
+    api_instance.get_social_stats(prompt_id)
+except ApiException as e:
+    print "Exception when calling SocialsApi->get_social_stats: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **prompt_id** | **str**| ID of the prompt | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_social_content**
+> post_social_content(email_id)
+
+Creates social content
+
+Creates social content for an email
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.SocialsApi()
+email_id = 'email_id_example' # str | The email's id
+
+try: 
+    # Creates social content
+    api_instance.post_social_content(email_id)
+except ApiException as e:
+    print "Exception when calling SocialsApi->post_social_content: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email_id** | **str**| The email&#39;s id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_client_group_send_mechanism**
+> update_client_group_send_mechanism(send_mechanism, client_group_id, enabled=enabled)
 
 Gets the auto shares from the client group assoc id
 
@@ -85,20 +324,24 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
 api_instance = bombbomb.SocialsApi()
+send_mechanism = 'send_mechanism_example' # str | The send mechanism for the prompt
 client_group_id = 'client_group_id_example' # str | ID of the client group association
+enabled = 'enabled_example' # str | Is the send mechanism enabled? (optional)
 
 try: 
     # Gets the auto shares from the client group assoc id
-    api_instance.get_social_auto_shares(client_group_id)
+    api_instance.update_client_group_send_mechanism(send_mechanism, client_group_id, enabled=enabled)
 except ApiException as e:
-    print "Exception when calling SocialsApi->get_social_auto_shares: %s\n" % e
+    print "Exception when calling SocialsApi->update_client_group_send_mechanism: %s\n" % e
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **send_mechanism** | **str**| The send mechanism for the prompt | 
  **client_group_id** | **str**| ID of the client group association | 
+ **enabled** | **str**| Is the send mechanism enabled? | [optional] 
 
 ### Return type
 
@@ -115,12 +358,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_social_permissions**
-> get_social_permissions(social_type)
+# **update_facebook_pages**
+> update_facebook_pages(page_ids)
 
-Get permissions for social integration
+Updates facebook page Ids
 
-Get permissions for social integration and has redirect for user to login
+Updates facebook page Ids to be sent to for prompts
 
 ### Example 
 ```python
@@ -134,20 +377,20 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
 api_instance = bombbomb.SocialsApi()
-social_type = 'social_type_example' # str | Type of social integration
+page_ids = 'page_ids_example' # str | Page Ids for the prompt
 
 try: 
-    # Get permissions for social integration
-    api_instance.get_social_permissions(social_type)
+    # Updates facebook page Ids
+    api_instance.update_facebook_pages(page_ids)
 except ApiException as e:
-    print "Exception when calling SocialsApi->get_social_permissions: %s\n" % e
+    print "Exception when calling SocialsApi->update_facebook_pages: %s\n" % e
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **social_type** | **str**| Type of social integration | 
+ **page_ids** | **str**| Page Ids for the prompt | 
 
 ### Return type
 
@@ -164,61 +407,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_social_status**
-> get_social_status(originator_id)
+# **update_social_content**
+> update_social_content(social_id, title=title, description=description, picture_url=picture_url, suggested_message=suggested_message)
 
-Gets the social state
+Updates social content
 
-Gets the social state
-
-### Example 
-```python
-import time
-import bombbomb
-from bombbomb.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = bombbomb.SocialsApi()
-originator_id = 'originator_id_example' # str | associated originatorId
-
-try: 
-    # Gets the social state
-    api_instance.get_social_status(originator_id)
-except ApiException as e:
-    print "Exception when calling SocialsApi->get_social_status: %s\n" % e
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **originator_id** | **str**| associated originatorId | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[BBOAuth2](../README.md#BBOAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_social_auto_shares**
-> update_social_auto_shares(auto_share, client_group_id)
-
-Gets the auto shares from the client group assoc id
-
-Gets the auto shares from the client group assoc id
+Updates social content for an email
 
 ### Example 
 ```python
@@ -232,124 +426,28 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
 api_instance = bombbomb.SocialsApi()
-auto_share = 'auto_share_example' # str | The social share that will auto share to
-client_group_id = 'client_group_id_example' # str | ID of the client group association
+social_id = 'social_id_example' # str | The social id
+title = 'title_example' # str | The title for the article (optional)
+description = 'description_example' # str | The article description (optional)
+picture_url = 'picture_url_example' # str | The article picture url (optional)
+suggested_message = 'suggested_message_example' # str | The suggested message to use (optional)
 
 try: 
-    # Gets the auto shares from the client group assoc id
-    api_instance.update_social_auto_shares(auto_share, client_group_id)
+    # Updates social content
+    api_instance.update_social_content(social_id, title=title, description=description, picture_url=picture_url, suggested_message=suggested_message)
 except ApiException as e:
-    print "Exception when calling SocialsApi->update_social_auto_shares: %s\n" % e
+    print "Exception when calling SocialsApi->update_social_content: %s\n" % e
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **auto_share** | **str**| The social share that will auto share to | 
- **client_group_id** | **str**| ID of the client group association | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[BBOAuth2](../README.md#BBOAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_social_message**
-> update_social_message(message, originator_id)
-
-Sets the users social message to what they typed in
-
-Sets the users social message to what they typed in
-
-### Example 
-```python
-import time
-import bombbomb
-from bombbomb.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = bombbomb.SocialsApi()
-message = 'message_example' # str | The social message the user typed in
-originator_id = 'originator_id_example' # str | The parent id tied to the social share
-
-try: 
-    # Sets the users social message to what they typed in
-    api_instance.update_social_message(message, originator_id)
-except ApiException as e:
-    print "Exception when calling SocialsApi->update_social_message: %s\n" % e
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **message** | **str**| The social message the user typed in | 
- **originator_id** | **str**| The parent id tied to the social share | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[BBOAuth2](../README.md#BBOAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_social_status**
-> update_social_status(state, originator_id)
-
-Updates the social state for the object
-
-Updates the social state for the object
-
-### Example 
-```python
-import time
-import bombbomb
-from bombbomb.rest import ApiException
-from pprint import pprint
-
-# Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# create an instance of the API class
-api_instance = bombbomb.SocialsApi()
-state = 'state_example' # str | The state to set to
-originator_id = 'originator_id_example' # str | The parent id tied to the social share
-
-try: 
-    # Updates the social state for the object
-    api_instance.update_social_status(state, originator_id)
-except ApiException as e:
-    print "Exception when calling SocialsApi->update_social_status: %s\n" % e
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **state** | **str**| The state to set to | 
- **originator_id** | **str**| The parent id tied to the social share | 
+ **social_id** | **str**| The social id | 
+ **title** | **str**| The title for the article | [optional] 
+ **description** | **str**| The article description | [optional] 
+ **picture_url** | **str**| The article picture url | [optional] 
+ **suggested_message** | **str**| The suggested message to use | [optional] 
 
 ### Return type
 
