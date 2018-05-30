@@ -268,11 +268,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_contacts**
-> delete_contacts(list_id)
+> delete_contacts(list_id=list_id, contact_ids=contact_ids)
 
 Delete Contacts
 
-Delete contacts
+Delete all contacts within a list, or provide a comma separated list of contactIds to delete.
 
 ### Example 
 ```python
@@ -286,11 +286,12 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
 api_instance = bombbomb.ContactsApi()
-list_id = 'list_id_example' # str | The list of contacts to be deleted.
+list_id = 'list_id_example' # str | The list of contacts to be deleted. (optional)
+contact_ids = 'contact_ids_example' # str | comma separated list of contact ids to delete (optional)
 
 try: 
     # Delete Contacts
-    api_instance.delete_contacts(list_id)
+    api_instance.delete_contacts(list_id=list_id, contact_ids=contact_ids)
 except ApiException as e:
     print "Exception when calling ContactsApi->delete_contacts: %s\n" % e
 ```
@@ -299,7 +300,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **list_id** | **str**| The list of contacts to be deleted. | 
+ **list_id** | **str**| The list of contacts to be deleted. | [optional] 
+ **contact_ids** | **str**| comma separated list of contact ids to delete | [optional] 
 
 ### Return type
 

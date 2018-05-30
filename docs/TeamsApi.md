@@ -5,6 +5,8 @@ All URIs are relative to *https://api.bombbomb.com/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_team_member**](TeamsApi.md#add_team_member) | **POST** /team/{teamId}/member | Add Member to Team
+[**add_users**](TeamsApi.md#add_users) | **POST** /team/{teamId}/members | Add users to group.
+[**add_users_from_csv**](TeamsApi.md#add_users_from_csv) | **POST** /team/{teamId}/members/csv | Add members to group from CSV
 [**cancel_jericho_send**](TeamsApi.md#cancel_jericho_send) | **DELETE** /team/{teamId}/jericho/{jerichoId} | Cancel a Jericho Send
 [**create_subteam**](TeamsApi.md#create_subteam) | **POST** /team/{teamId}/subteam | Add a Subteam
 [**delete_subteam**](TeamsApi.md#delete_subteam) | **DELETE** /team/{teamId}/subteam | Delete Subteam
@@ -17,6 +19,7 @@ Method | HTTP request | Description
 [**get_subteams**](TeamsApi.md#get_subteams) | **GET** /team/{teamId}/subteam | List Subteams
 [**get_team_prompt_aggregate_stats**](TeamsApi.md#get_team_prompt_aggregate_stats) | **GET** /team/{clientGroupId}/campaign/stats | Get aggregate stats for campaigns
 [**get_team_prompt_campaigns**](TeamsApi.md#get_team_prompt_campaigns) | **GET** /team/{clientGroupId}/campaign | Get campaigns for team
+[**invite_to_social_prompt_team**](TeamsApi.md#invite_to_social_prompt_team) | **POST** /teams/prompt/invite | Invite a list to join the admin&#39;s social prompt team
 [**queue_jericho_send**](TeamsApi.md#queue_jericho_send) | **POST** /team/{teamId}/jericho | Creates a Jericho send.
 [**remove_member_from_team**](TeamsApi.md#remove_member_from_team) | **DELETE** /team/{teamId}/member/{userId} | Remove Member from Team
 [**resend_team_member_invitation**](TeamsApi.md#resend_team_member_invitation) | **POST** /team/{teamId}/{memberUserId}/rewelcome | Resend invite
@@ -26,7 +29,7 @@ Method | HTTP request | Description
 
 
 # **add_team_member**
-> str add_team_member(team_id, user_id=user_id, user_email=user_email, admin=admin)
+> str add_team_member(team_id, admin=admin, subgroup_ids=subgroup_ids, user_email=user_email, user_id=user_id)
 
 Add Member to Team
 
@@ -45,13 +48,14 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # create an instance of the API class
 api_instance = bombbomb.TeamsApi()
 team_id = 'team_id_example' # str | The team id
-user_id = 'user_id_example' # str | The user id of the member being added to the team. (optional)
-user_email = 'user_email_example' # str | The email of the member being added to the team. (optional)
 admin = true # bool | Set if the user is an admin of this team. (optional)
+subgroup_ids = 'subgroup_ids_example' # str | Subgroup IDs to add user to (optional)
+user_email = 'user_email_example' # str | The email of the member being added to the team. (optional)
+user_id = 'user_id_example' # str | The user id of the member being added to the team. (optional)
 
 try: 
     # Add Member to Team
-    api_response = api_instance.add_team_member(team_id, user_id=user_id, user_email=user_email, admin=admin)
+    api_response = api_instance.add_team_member(team_id, admin=admin, subgroup_ids=subgroup_ids, user_email=user_email, user_id=user_id)
     pprint(api_response)
 except ApiException as e:
     print "Exception when calling TeamsApi->add_team_member: %s\n" % e
@@ -62,13 +66,126 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| The team id | 
- **user_id** | **str**| The user id of the member being added to the team. | [optional] 
- **user_email** | **str**| The email of the member being added to the team. | [optional] 
  **admin** | **bool**| Set if the user is an admin of this team. | [optional] 
+ **subgroup_ids** | **str**| Subgroup IDs to add user to | [optional] 
+ **user_email** | **str**| The email of the member being added to the team. | [optional] 
+ **user_id** | **str**| The user id of the member being added to the team. | [optional] 
 
 ### Return type
 
 **str**
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **add_users**
+> add_users(team_id, user_details, send_welcome_email=send_welcome_email, subgroup_ids=subgroup_ids)
+
+Add users to group.
+
+Add a new or existing user to group.
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+team_id = 'team_id_example' # str | The team id
+user_details = 'user_details_example' # str | Array of emails or objects containing details needed to create user
+send_welcome_email = 'send_welcome_email_example' # str | Whether to send welcome email to new users (optional)
+subgroup_ids = 'subgroup_ids_example' # str | Subgroup IDs to add user to (optional)
+
+try: 
+    # Add users to group.
+    api_instance.add_users(team_id, user_details, send_welcome_email=send_welcome_email, subgroup_ids=subgroup_ids)
+except ApiException as e:
+    print "Exception when calling TeamsApi->add_users: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **str**| The team id | 
+ **user_details** | **str**| Array of emails or objects containing details needed to create user | 
+ **send_welcome_email** | **str**| Whether to send welcome email to new users | [optional] 
+ **subgroup_ids** | **str**| Subgroup IDs to add user to | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **add_users_from_csv**
+> add_users_from_csv(team_id, csv_import_id, map, send_welcome_email=send_welcome_email, subgroup_ids=subgroup_ids)
+
+Add members to group from CSV
+
+Imports members to a group from a given CSV ID.
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+team_id = 'team_id_example' # str | The team id
+csv_import_id = 'csv_import_id_example' # str | ID of the CSV to import
+map = 'map_example' # str | Object to use when mapping import to AccountCreateDetails. Key is property name on details, value is CSV column number.
+send_welcome_email = 'send_welcome_email_example' # str | Whether to send welcome email to new users (optional)
+subgroup_ids = 'subgroup_ids_example' # str | Subgroup IDs to add user to (optional)
+
+try: 
+    # Add members to group from CSV
+    api_instance.add_users_from_csv(team_id, csv_import_id, map, send_welcome_email=send_welcome_email, subgroup_ids=subgroup_ids)
+except ApiException as e:
+    print "Exception when calling TeamsApi->add_users_from_csv: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **str**| The team id | 
+ **csv_import_id** | **str**| ID of the CSV to import | 
+ **map** | **str**| Object to use when mapping import to AccountCreateDetails. Key is property name on details, value is CSV column number. | 
+ **send_welcome_email** | **str**| Whether to send welcome email to new users | [optional] 
+ **subgroup_ids** | **str**| Subgroup IDs to add user to | [optional] 
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -657,7 +774,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_team_prompt_campaigns**
-> get_team_prompt_campaigns(client_group_id, search_term=search_term, order_by=order_by, asc=asc)
+> get_team_prompt_campaigns(client_group_id, search_term=search_term, current_page=current_page)
 
 Get campaigns for team
 
@@ -677,12 +794,11 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 api_instance = bombbomb.TeamsApi()
 client_group_id = 'client_group_id_example' # str | ID of the client group association
 search_term = 'search_term_example' # str | The value to search for in prompt subject (optional)
-order_by = 'order_by_example' # str | How to sort the column (optional)
-asc = 'asc_example' # str | Ascending or not (optional)
+current_page = 'current_page_example' # str | The current page (optional)
 
 try: 
     # Get campaigns for team
-    api_instance.get_team_prompt_campaigns(client_group_id, search_term=search_term, order_by=order_by, asc=asc)
+    api_instance.get_team_prompt_campaigns(client_group_id, search_term=search_term, current_page=current_page)
 except ApiException as e:
     print "Exception when calling TeamsApi->get_team_prompt_campaigns: %s\n" % e
 ```
@@ -693,8 +809,58 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **client_group_id** | **str**| ID of the client group association | 
  **search_term** | **str**| The value to search for in prompt subject | [optional] 
- **order_by** | **str**| How to sort the column | [optional] 
- **asc** | **str**| Ascending or not | [optional] 
+ **current_page** | **str**| The current page | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **invite_to_social_prompt_team**
+> invite_to_social_prompt_team(team_id, list_id)
+
+Invite a list to join the admin's social prompt team
+
+Invite to Social Prompt Team
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi()
+team_id = 'team_id_example' # str | The team id
+list_id = 'list_id_example' # str | List to invite to the social prompt team.
+
+try: 
+    # Invite a list to join the admin's social prompt team
+    api_instance.invite_to_social_prompt_team(team_id, list_id)
+except ApiException as e:
+    print "Exception when calling TeamsApi->invite_to_social_prompt_team: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **team_id** | **str**| The team id | 
+ **list_id** | **str**| List to invite to the social prompt team. | 
 
 ### Return type
 
@@ -919,7 +1085,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_team**
-> TeamPublicRepresentation update_team(team_id, name=name, state=state)
+> TeamPublicRepresentation update_team(team_id, name=name, state=state, subteams_can_add_members=subteams_can_add_members)
 
 Update a team
 
@@ -940,10 +1106,11 @@ api_instance = bombbomb.TeamsApi()
 team_id = 'team_id_example' # str | The team id
 name = 'name_example' # str | The name of the team (optional)
 state = 'state_example' # str | The status of the login permissions (optional)
+subteams_can_add_members = true # bool | Updates subteam member adding setting on group (optional)
 
 try: 
     # Update a team
-    api_response = api_instance.update_team(team_id, name=name, state=state)
+    api_response = api_instance.update_team(team_id, name=name, state=state, subteams_can_add_members=subteams_can_add_members)
     pprint(api_response)
 except ApiException as e:
     print "Exception when calling TeamsApi->update_team: %s\n" % e
@@ -956,6 +1123,7 @@ Name | Type | Description  | Notes
  **team_id** | **str**| The team id | 
  **name** | **str**| The name of the team | [optional] 
  **state** | **str**| The status of the login permissions | [optional] 
+ **subteams_can_add_members** | **bool**| Updates subteam member adding setting on group | [optional] 
 
 ### Return type
 
@@ -973,7 +1141,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_team_member**
-> update_team_member(team_id, user_id, admin)
+> update_team_member(team_id, user_id, admin, permission_suite_id=permission_suite_id)
 
 Update Member of Team
 
@@ -994,10 +1162,11 @@ api_instance = bombbomb.TeamsApi()
 team_id = 'team_id_example' # str | The team id
 user_id = 'user_id_example' # str | The user id of the member being added to the team.
 admin = true # bool | Set if the user is an admin of this team.
+permission_suite_id = 'permission_suite_id_example' # str | Set if the user is an admin of this team. (optional)
 
 try: 
     # Update Member of Team
-    api_instance.update_team_member(team_id, user_id, admin)
+    api_instance.update_team_member(team_id, user_id, admin, permission_suite_id=permission_suite_id)
 except ApiException as e:
     print "Exception when calling TeamsApi->update_team_member: %s\n" % e
 ```
@@ -1009,6 +1178,7 @@ Name | Type | Description  | Notes
  **team_id** | **str**| The team id | 
  **user_id** | **str**| The user id of the member being added to the team. | 
  **admin** | **bool**| Set if the user is an admin of this team. | 
+ **permission_suite_id** | **str**| Set if the user is an admin of this team. | [optional] 
 
 ### Return type
 

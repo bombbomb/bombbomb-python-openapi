@@ -9,7 +9,11 @@ Method | HTTP request | Description
 [**get_email_tracking**](EmailsApi.md#get_email_tracking) | **GET** /emails/{emailId}/tracking | Get Email Tracking
 [**get_email_tracking_interactions**](EmailsApi.md#get_email_tracking_interactions) | **GET** /emails/{emailId}/tracking/interactions | Get Email Tracking Interactions
 [**get_hourly_email_tracking**](EmailsApi.md#get_hourly_email_tracking) | **GET** /emails/{emailId}/tracking/hourly | Get Hourly Email Tracking
+[**get_live_fire_data**](EmailsApi.md#get_live_fire_data) | **GET** /emails/livefire | Get livefire feed data
 [**get_quick_send_templates**](EmailsApi.md#get_quick_send_templates) | **GET** /emails/quicksend/templates | Get all quicksend templates
+[**get_template_html_for_template_id**](EmailsApi.md#get_template_html_for_template_id) | **GET** /emails/templates/{templateId}/html | Get the HTML for a given template
+[**get_video_quick_sender_data**](EmailsApi.md#get_video_quick_sender_data) | **GET** /emails/quicksend | Get quicksend data
+[**save_quick_sender_settings**](EmailsApi.md#save_quick_sender_settings) | **POST** /emails/quicksend/settings | Save quicksender settings
 [**video_quick_sender**](EmailsApi.md#video_quick_sender) | **POST** /emails/quicksend | Send a quicksend email
 
 
@@ -278,6 +282,51 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_live_fire_data**
+> get_live_fire_data()
+
+Get livefire feed data
+
+Get the user data for the live fire feed emails
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.EmailsApi()
+
+try: 
+    # Get livefire feed data
+    api_instance.get_live_fire_data()
+except ApiException as e:
+    print "Exception when calling EmailsApi->get_live_fire_data: %s\n" % e
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_quick_send_templates**
 > get_quick_send_templates()
 
@@ -307,6 +356,167 @@ except ApiException as e:
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_template_html_for_template_id**
+> get_template_html_for_template_id(template_id, render_variables=render_variables)
+
+Get the HTML for a given template
+
+Get the HTML for a given template, with or without rendered variables
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.EmailsApi()
+template_id = 'template_id_example' # str | The id of the template.
+render_variables = 'render_variables_example' # str | Whether to render profile variables in the returned HTML. (optional)
+
+try: 
+    # Get the HTML for a given template
+    api_instance.get_template_html_for_template_id(template_id, render_variables=render_variables)
+except ApiException as e:
+    print "Exception when calling EmailsApi->get_template_html_for_template_id: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **template_id** | **str**| The id of the template. | 
+ **render_variables** | **str**| Whether to render profile variables in the returned HTML. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_video_quick_sender_data**
+> get_video_quick_sender_data(message=message, subject=subject, video_id=video_id, template_id=template_id, comma_delim_emails=comma_delim_emails)
+
+Get quicksend data
+
+Get the user data for quicksender, including templates and lists.
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.EmailsApi()
+message = 'message_example' # str | A message for the video content. (optional)
+subject = 'subject_example' # str | A subject for the video content. (optional)
+video_id = 'video_id_example' # str | A video ID. (optional)
+template_id = 'template_id_example' # str | A template ID. (optional)
+comma_delim_emails = 'comma_delim_emails_example' # str | Comma delimited emails (optional)
+
+try: 
+    # Get quicksend data
+    api_instance.get_video_quick_sender_data(message=message, subject=subject, video_id=video_id, template_id=template_id, comma_delim_emails=comma_delim_emails)
+except ApiException as e:
+    print "Exception when calling EmailsApi->get_video_quick_sender_data: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **message** | **str**| A message for the video content. | [optional] 
+ **subject** | **str**| A subject for the video content. | [optional] 
+ **video_id** | **str**| A video ID. | [optional] 
+ **template_id** | **str**| A template ID. | [optional] 
+ **comma_delim_emails** | **str**| Comma delimited emails | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **save_quick_sender_settings**
+> save_quick_sender_settings(alert_on_play=alert_on_play, alert_on_open=alert_on_open, template_id=template_id)
+
+Save quicksender settings
+
+Save the quicksender notification and default template settings
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.EmailsApi()
+alert_on_play = 'alert_on_play_example' # str | A preference setting for whether or not to notify user on quicksend email video plays. (optional)
+alert_on_open = 'alert_on_open_example' # str | A preference setting for whether or not to notify user on quicksend email opens. (optional)
+template_id = 'template_id_example' # str | Id of a template to use for this send. A null value means use the default for this user. (optional)
+
+try: 
+    # Save quicksender settings
+    api_instance.save_quick_sender_settings(alert_on_play=alert_on_play, alert_on_open=alert_on_open, template_id=template_id)
+except ApiException as e:
+    print "Exception when calling EmailsApi->save_quick_sender_settings: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **alert_on_play** | **str**| A preference setting for whether or not to notify user on quicksend email video plays. | [optional] 
+ **alert_on_open** | **str**| A preference setting for whether or not to notify user on quicksend email opens. | [optional] 
+ **template_id** | **str**| Id of a template to use for this send. A null value means use the default for this user. | [optional] 
 
 ### Return type
 

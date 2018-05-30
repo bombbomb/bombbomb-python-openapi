@@ -6,15 +6,18 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_prompt_bot**](PromptsApi.md#create_prompt_bot) | **POST** /prompts/bots | Create a running Prompt Bot for a list
 [**create_video_email_prompt**](PromptsApi.md#create_video_email_prompt) | **POST** /prompt | Prompts user to send a video
+[**get_alternate_campaign_content**](PromptsApi.md#get_alternate_campaign_content) | **GET** /campaign/{campaignId}/content/alternate | List alternate campaign content
 [**get_pending_video_email_prompts**](PromptsApi.md#get_pending_video_email_prompts) | **GET** /prompt/pending | List pending prompts
 [**get_prompt_bots**](PromptsApi.md#get_prompt_bots) | **GET** /prompts/bots | List Prompt Bots
-[**get_prompt_campaigns**](PromptsApi.md#get_prompt_campaigns) | **GET** /prompts/campaigns | List Prompt Campaigns
+[**get_prompt_campaigns**](PromptsApi.md#get_prompt_campaigns) | **GET** /prompts/{userId}/campaigns | List Prompt Campaigns
 [**get_video_email_prompt**](PromptsApi.md#get_video_email_prompt) | **GET** /prompt/{id} | Gets a prompt
 [**get_video_email_prompts**](PromptsApi.md#get_video_email_prompts) | **GET** /prompt/ | List prompts
 [**respond_to_video_email_prompt**](PromptsApi.md#respond_to_video_email_prompt) | **POST** /prompt/{id}/response | Respond to a prompt
+[**sync_prompt_subscriptions**](PromptsApi.md#sync_prompt_subscriptions) | **POST** /prompts/campaigns/sync | Syncs Campaigns and One to Ones Subscriptions for User
 [**update_prompt**](PromptsApi.md#update_prompt) | **PUT** /prompts/{id} | Update Prompt
 [**update_prompt_bot**](PromptsApi.md#update_prompt_bot) | **PUT** /prompts/bots/{id} | Update Prompt Bot
 [**update_prompt_campaign**](PromptsApi.md#update_prompt_campaign) | **PUT** /prompts/campaigns/{id} | Update Prompt Campaign
+[**update_prompt_template**](PromptsApi.md#update_prompt_template) | **PUT** /prompts/{id}/content | Update Prompt Content
 
 
 # **create_prompt_bot**
@@ -131,6 +134,55 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_alternate_campaign_content**
+> get_alternate_campaign_content(client_group_id)
+
+List alternate campaign content
+
+Returns a list of alternate campaign content by campaign id
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.PromptsApi()
+client_group_id = 'client_group_id_example' # str | Id for the campaign
+
+try: 
+    # List alternate campaign content
+    api_instance.get_alternate_campaign_content(client_group_id)
+except ApiException as e:
+    print "Exception when calling PromptsApi->get_alternate_campaign_content: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **client_group_id** | **str**| Id for the campaign | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -423,8 +475,57 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **sync_prompt_subscriptions**
+> sync_prompt_subscriptions(migrate=migrate)
+
+Syncs Campaigns and One to Ones Subscriptions for User
+
+Syncs Campaigns and One to Ones Subscriptions for User based on their profile information. The user must be a Prompt Subscriber.
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.PromptsApi()
+migrate = true # bool | After syncing, migrate away from old campaigns. (optional)
+
+try: 
+    # Syncs Campaigns and One to Ones Subscriptions for User
+    api_instance.sync_prompt_subscriptions(migrate=migrate)
+except ApiException as e:
+    print "Exception when calling PromptsApi->sync_prompt_subscriptions: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **migrate** | **bool**| After syncing, migrate away from old campaigns. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_prompt**
-> update_prompt(id, send_mechanism=send_mechanism, facebook_message=facebook_message, twitter_message=twitter_message, video_id=video_id, email_id=email_id, subject=subject)
+> update_prompt(id, send_mechanism=send_mechanism, facebook_message=facebook_message, twitter_message=twitter_message, video_id=video_id, email_id=email_id, subject=subject, reset_cache=reset_cache, reset_email_content=reset_email_content, status=status)
 
 Update Prompt
 
@@ -449,10 +550,13 @@ twitter_message = 'twitter_message_example' # str | The twitter message assigned
 video_id = 'video_id_example' # str | The id of the video. (optional)
 email_id = 'email_id_example' # str | The id of the email. (optional)
 subject = 'subject_example' # str | The subject of the email (optional)
+reset_cache = 'reset_cache_example' # str | The subject of the email (optional)
+reset_email_content = 'reset_email_content_example' # str | The subject of the email (optional)
+status = 'status_example' # str | The status of the prompt (optional)
 
 try: 
     # Update Prompt
-    api_instance.update_prompt(id, send_mechanism=send_mechanism, facebook_message=facebook_message, twitter_message=twitter_message, video_id=video_id, email_id=email_id, subject=subject)
+    api_instance.update_prompt(id, send_mechanism=send_mechanism, facebook_message=facebook_message, twitter_message=twitter_message, video_id=video_id, email_id=email_id, subject=subject, reset_cache=reset_cache, reset_email_content=reset_email_content, status=status)
 except ApiException as e:
     print "Exception when calling PromptsApi->update_prompt: %s\n" % e
 ```
@@ -468,6 +572,9 @@ Name | Type | Description  | Notes
  **video_id** | **str**| The id of the video. | [optional] 
  **email_id** | **str**| The id of the email. | [optional] 
  **subject** | **str**| The subject of the email | [optional] 
+ **reset_cache** | **str**| The subject of the email | [optional] 
+ **reset_email_content** | **str**| The subject of the email | [optional] 
+ **status** | **str**| The status of the prompt | [optional] 
 
 ### Return type
 
@@ -595,6 +702,63 @@ Name | Type | Description  | Notes
  **personal_template_id** | **str**| The template to use for personal feel emails. | [optional] 
  **enabled** | **bool**| Set whether the user is able to start receiving prompts. | [optional] 
  **send_mechanism** | **str**| The way to send the prompt | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_prompt_template**
+> update_prompt_template(id, alternate_content_id, new_email_id, og_email_id, new_example_video_id)
+
+Update Prompt Content
+
+Updates a Prompt Content
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.PromptsApi()
+id = 'id_example' # str | The prompt's id
+alternate_content_id = 'alternate_content_id_example' # str | The alternate content id
+new_email_id = 'new_email_id_example' # str | The prompt's new email id
+og_email_id = 'og_email_id_example' # str | The prompt's original email id
+new_example_video_id = 'new_example_video_id_example' # str | The prompt's new tutorial video id
+
+try: 
+    # Update Prompt Content
+    api_instance.update_prompt_template(id, alternate_content_id, new_email_id, og_email_id, new_example_video_id)
+except ApiException as e:
+    print "Exception when calling PromptsApi->update_prompt_template: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The prompt&#39;s id | 
+ **alternate_content_id** | **str**| The alternate content id | 
+ **new_email_id** | **str**| The prompt&#39;s new email id | 
+ **og_email_id** | **str**| The prompt&#39;s original email id | 
+ **new_example_video_id** | **str**| The prompt&#39;s new tutorial video id | 
 
 ### Return type
 

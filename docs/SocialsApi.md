@@ -10,7 +10,10 @@ Method | HTTP request | Description
 [**get_social_profile_properties**](SocialsApi.md#get_social_profile_properties) | **GET** /socials/profile | Gets the profile properties
 [**get_social_stats**](SocialsApi.md#get_social_stats) | **GET** /socials/{promptId}/stats | Get social stats for a prompt
 [**post_social_content**](SocialsApi.md#post_social_content) | **POST** /socials/content | Creates social content
+[**retry_social_send**](SocialsApi.md#retry_social_send) | **POST** /socials/send/retry | Sends social content
+[**send_social**](SocialsApi.md#send_social) | **POST** /socials/send | Sends social content
 [**update_client_group_send_mechanism**](SocialsApi.md#update_client_group_send_mechanism) | **PUT** /socials/client/sendMechanism | Gets the auto shares from the client group assoc id
+[**update_client_groups_send_mechanism**](SocialsApi.md#update_client_groups_send_mechanism) | **PUT** /socials/client/sendMechanisms | Toggles the prompt campaigns in a users account
 [**update_facebook_pages**](SocialsApi.md#update_facebook_pages) | **PUT** /socials/facebook/pages | Updates facebook page Ids
 [**update_social_content**](SocialsApi.md#update_social_content) | **PUT** /socials/content | Updates social content
 
@@ -61,7 +64,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_social_article_properties**
-> get_social_article_properties(email_id)
+> get_social_article_properties(email_id, social_content_id)
 
 Gets the social email properties
 
@@ -80,10 +83,11 @@ bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # create an instance of the API class
 api_instance = bombbomb.SocialsApi()
 email_id = 'email_id_example' # str | This is the email Id for the email url
+social_content_id = 'social_content_id_example' # str | This is the social content Id
 
 try: 
     # Gets the social email properties
-    api_instance.get_social_article_properties(email_id)
+    api_instance.get_social_article_properties(email_id, social_content_id)
 except ApiException as e:
     print "Exception when calling SocialsApi->get_social_article_properties: %s\n" % e
 ```
@@ -93,6 +97,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **email_id** | **str**| This is the email Id for the email url | 
+ **social_content_id** | **str**| This is the social content Id | 
 
 ### Return type
 
@@ -305,6 +310,106 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **retry_social_send**
+> retry_social_send(prompt_id)
+
+Sends social content
+
+Sends social content that failed for a user via their associated prompt
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.SocialsApi()
+prompt_id = 'prompt_id_example' # str | The prompt id
+
+try: 
+    # Sends social content
+    api_instance.retry_social_send(prompt_id)
+except ApiException as e:
+    print "Exception when calling SocialsApi->retry_social_send: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **prompt_id** | **str**| The prompt id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **send_social**
+> send_social(prompt_id, social_type)
+
+Sends social content
+
+Sends social content for a user via their associated prompt
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.SocialsApi()
+prompt_id = 'prompt_id_example' # str | The prompt id
+social_type = 'social_type_example' # str | The destination for social content
+
+try: 
+    # Sends social content
+    api_instance.send_social(prompt_id, social_type)
+except ApiException as e:
+    print "Exception when calling SocialsApi->send_social: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **prompt_id** | **str**| The prompt id | 
+ **social_type** | **str**| The destination for social content | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_client_group_send_mechanism**
 > update_client_group_send_mechanism(send_mechanism, client_group_id, enabled=enabled)
 
@@ -342,6 +447,57 @@ Name | Type | Description  | Notes
  **send_mechanism** | **str**| The send mechanism for the prompt | 
  **client_group_id** | **str**| ID of the client group association | 
  **enabled** | **str**| Is the send mechanism enabled? | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_client_groups_send_mechanism**
+> update_client_groups_send_mechanism(send_mechanism, enabled)
+
+Toggles the prompt campaigns in a users account
+
+Toggles the prompt campaigns in a users account for a social integrations on or off
+
+### Example 
+```python
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.SocialsApi()
+send_mechanism = 'send_mechanism_example' # str | The send mechanism for the prompt
+enabled = 'enabled_example' # str | Is the send mechanism enabled?
+
+try: 
+    # Toggles the prompt campaigns in a users account
+    api_instance.update_client_groups_send_mechanism(send_mechanism, enabled)
+except ApiException as e:
+    print "Exception when calling SocialsApi->update_client_groups_send_mechanism: %s\n" % e
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **send_mechanism** | **str**| The send mechanism for the prompt | 
+ **enabled** | **str**| Is the send mechanism enabled? | 
 
 ### Return type
 
