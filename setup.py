@@ -14,7 +14,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "bombbomb"
-VERSION = "2.0.831"
+VERSION = "2.0.25798"
 # To install the library, run the following
 #
 # python setup.py install
