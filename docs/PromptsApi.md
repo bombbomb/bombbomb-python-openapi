@@ -13,10 +13,11 @@ Method | HTTP request | Description
 [**get_video_email_prompt**](PromptsApi.md#get_video_email_prompt) | **GET** /prompt/{id} | Gets a prompt
 [**get_video_email_prompts**](PromptsApi.md#get_video_email_prompts) | **GET** /prompt/ | List prompts
 [**respond_to_video_email_prompt**](PromptsApi.md#respond_to_video_email_prompt) | **POST** /prompt/{id}/response | Respond to a prompt
+[**send_prompt_immediately**](PromptsApi.md#send_prompt_immediately) | **POST** /prompt/{id}/sendit | 
 [**sync_prompt_subscriptions**](PromptsApi.md#sync_prompt_subscriptions) | **POST** /prompts/campaigns/sync | Syncs Campaigns and One to Ones Subscriptions for User
 [**update_prompt**](PromptsApi.md#update_prompt) | **PUT** /prompts/{id} | Update Prompt
 [**update_prompt_bot**](PromptsApi.md#update_prompt_bot) | **PUT** /prompts/bots/{id} | Update Prompt Bot
-[**update_prompt_campaign**](PromptsApi.md#update_prompt_campaign) | **PUT** /prompts/campaigns/{id} | Update Prompt Campaign
+[**update_prompt_campaign**](PromptsApi.md#update_prompt_campaign) | **PUT** /prompts/campaigns/{clientGroupId} | Update Prompt Campaign
 [**update_prompt_template**](PromptsApi.md#update_prompt_template) | **PUT** /prompts/{id}/content | Update Prompt Content
 
 
@@ -27,18 +28,20 @@ Create a running Prompt Bot for a list
 
 Creates a Prompt Bot that sends emails to contacts on a list over the span of time defined.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 email_id = 'email_id_example' # str | The default email to use.
 name = 'name_example' # str | The name of the bot.
 subject = 'subject_example' # str | The subject of the default email.
@@ -50,12 +53,12 @@ list_id = 'list_id_example' # str | The list id to attach the bot to. (optional)
 video_id = 'video_id_example' # str | The video used in the email. (optional)
 end_date = 'end_date_example' # str | The time frame to complete sending to the list. (optional)
 
-try: 
+try:
     # Create a running Prompt Bot for a list
     api_response = api_instance.create_prompt_bot(email_id, name, subject, content, contact_field_value_column, bot_type_id, template_id, list_id=list_id, video_id=video_id, end_date=end_date)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PromptsApi->create_prompt_bot: %s\n" % e
+    print("Exception when calling PromptsApi->create_prompt_bot: %s\n" % e)
 ```
 
 ### Parameters
@@ -95,26 +98,28 @@ Prompts user to send a video
 
 Sends the account holder an email prompting them to add a video to a scheduled outgoing message. Recipients, content and timing is all preset for the user.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 prompt = bombbomb.VideoEmailPrompt() # VideoEmailPrompt | The Video Email Prompt to be created
 
-try: 
+try:
     # Prompts user to send a video
     api_response = api_instance.create_video_email_prompt(prompt)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PromptsApi->create_video_email_prompt: %s\n" % e
+    print("Exception when calling PromptsApi->create_video_email_prompt: %s\n" % e)
 ```
 
 ### Parameters
@@ -145,25 +150,27 @@ List alternate campaign content
 
 Returns a list of alternate campaign content by campaign id
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 client_group_id = 'client_group_id_example' # str | Id for the campaign
 
-try: 
+try:
     # List alternate campaign content
     api_instance.get_alternate_campaign_content(client_group_id)
 except ApiException as e:
-    print "Exception when calling PromptsApi->get_alternate_campaign_content: %s\n" % e
+    print("Exception when calling PromptsApi->get_alternate_campaign_content: %s\n" % e)
 ```
 
 ### Parameters
@@ -194,25 +201,27 @@ List pending prompts
 
 Returns a list of prompts that have not been sent yet, and can still be customized.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # List pending prompts
     api_response = api_instance.get_pending_video_email_prompts()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PromptsApi->get_pending_video_email_prompts: %s\n" % e
+    print("Exception when calling PromptsApi->get_pending_video_email_prompts: %s\n" % e)
 ```
 
 ### Parameters
@@ -240,25 +249,27 @@ List Prompt Bots
 
 Returns a list of all Prompt Bots for the user.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # List Prompt Bots
     api_response = api_instance.get_prompt_bots()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PromptsApi->get_prompt_bots: %s\n" % e
+    print("Exception when calling PromptsApi->get_prompt_bots: %s\n" % e)
 ```
 
 ### Parameters
@@ -286,24 +297,26 @@ List Prompt Campaigns
 
 Returns a list of all Prompt Campaigns for the user.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # List Prompt Campaigns
     api_instance.get_prompt_campaigns()
 except ApiException as e:
-    print "Exception when calling PromptsApi->get_prompt_campaigns: %s\n" % e
+    print("Exception when calling PromptsApi->get_prompt_campaigns: %s\n" % e)
 ```
 
 ### Parameters
@@ -331,26 +344,28 @@ Gets a prompt
 
 Gets a prompt
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 id = 'id_example' # str | The Id of the prompt
 
-try: 
+try:
     # Gets a prompt
     api_response = api_instance.get_video_email_prompt(id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PromptsApi->get_video_email_prompt: %s\n" % e
+    print("Exception when calling PromptsApi->get_video_email_prompt: %s\n" % e)
 ```
 
 ### Parameters
@@ -381,25 +396,27 @@ List prompts
 
 Returns a list of all prompts.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # List prompts
     api_response = api_instance.get_video_email_prompts()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PromptsApi->get_video_email_prompts: %s\n" % e
+    print("Exception when calling PromptsApi->get_video_email_prompts: %s\n" % e)
 ```
 
 ### Parameters
@@ -427,8 +444,9 @@ Respond to a prompt
 
 Respond to a prompt by either adding a video, sending without a video or cancelling the prompt.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
@@ -442,12 +460,12 @@ video_id = 'video_id_example' # str | The id of the video. (optional)
 email_id = 'email_id_example' # str | The id of the email. (optional)
 subject = 'subject_example' # str | The subject of the email (optional)
 
-try: 
+try:
     # Respond to a prompt
     api_response = api_instance.respond_to_video_email_prompt(id, choice, video_id=video_id, email_id=email_id, subject=subject)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PromptsApi->respond_to_video_email_prompt: %s\n" % e
+    print("Exception when calling PromptsApi->respond_to_video_email_prompt: %s\n" % e)
 ```
 
 ### Parameters
@@ -475,6 +493,57 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **send_prompt_immediately**
+> send_prompt_immediately(id)
+
+
+
+Ignore send date and send the prompt now.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
+id = 'id_example' # str | The Id of the prompt
+
+try:
+    # 
+    api_instance.send_prompt_immediately(id)
+except ApiException as e:
+    print("Exception when calling PromptsApi->send_prompt_immediately: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The Id of the prompt | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **sync_prompt_subscriptions**
 > sync_prompt_subscriptions(migrate=migrate)
 
@@ -482,25 +551,27 @@ Syncs Campaigns and One to Ones Subscriptions for User
 
 Syncs Campaigns and One to Ones Subscriptions for User based on their profile information. The user must be a Prompt Subscriber.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 migrate = true # bool | After syncing, migrate away from old campaigns. (optional)
 
-try: 
+try:
     # Syncs Campaigns and One to Ones Subscriptions for User
     api_instance.sync_prompt_subscriptions(migrate=migrate)
 except ApiException as e:
-    print "Exception when calling PromptsApi->sync_prompt_subscriptions: %s\n" % e
+    print("Exception when calling PromptsApi->sync_prompt_subscriptions: %s\n" % e)
 ```
 
 ### Parameters
@@ -531,18 +602,20 @@ Update Prompt
 
 Updates a Prompt
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 id = 'id_example' # str | The prompt's id
 send_mechanism = 'send_mechanism_example' # str | The mechanism for the prompt to be sent (optional)
 facebook_message = 'facebook_message_example' # str | The facebook message assigned to the prompt (optional)
@@ -554,11 +627,11 @@ reset_cache = 'reset_cache_example' # str | The subject of the email (optional)
 reset_email_content = 'reset_email_content_example' # str | The subject of the email (optional)
 status = 'status_example' # str | The status of the prompt (optional)
 
-try: 
+try:
     # Update Prompt
     api_instance.update_prompt(id, send_mechanism=send_mechanism, facebook_message=facebook_message, twitter_message=twitter_message, video_id=video_id, email_id=email_id, subject=subject, reset_cache=reset_cache, reset_email_content=reset_email_content, status=status)
 except ApiException as e:
-    print "Exception when calling PromptsApi->update_prompt: %s\n" % e
+    print("Exception when calling PromptsApi->update_prompt: %s\n" % e)
 ```
 
 ### Parameters
@@ -598,18 +671,20 @@ Update Prompt Bot
 
 Updates a Prompt Bot's settings.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 id = 'id_example' # str | The bot id.
 email_id = 'email_id_example' # str | The default email to use.
 name = 'name_example' # str | The name of the bot.
@@ -622,12 +697,12 @@ video_id = 'video_id_example' # str | The video used in the default email. (opti
 end_date = 'end_date_example' # str | The time frame to complete sending to the list. (optional)
 status = 'status_example' # str | The status of the bot. (optional)
 
-try: 
+try:
     # Update Prompt Bot
     api_response = api_instance.update_prompt_bot(id, email_id, name, subject, content, contact_field_value_column, template_id, list_id=list_id, video_id=video_id, end_date=end_date, status=status)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling PromptsApi->update_prompt_bot: %s\n" % e
+    print("Exception when calling PromptsApi->update_prompt_bot: %s\n" % e)
 ```
 
 ### Parameters
@@ -668,29 +743,31 @@ Update Prompt Campaign
 
 Updates a Prompt Campaign's Settings
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 client_group_id = 'client_group_id_example' # str | The client group of the campaign.
 branded_template_id = 'branded_template_id_example' # str | The template to use for branded feel emails. (optional)
 personal_template_id = 'personal_template_id_example' # str | The template to use for personal feel emails. (optional)
 enabled = true # bool | Set whether the user is able to start receiving prompts. (optional)
 send_mechanism = 'send_mechanism_example' # str | The way to send the prompt (optional)
 
-try: 
+try:
     # Update Prompt Campaign
     api_instance.update_prompt_campaign(client_group_id, branded_template_id=branded_template_id, personal_template_id=personal_template_id, enabled=enabled, send_mechanism=send_mechanism)
 except ApiException as e:
-    print "Exception when calling PromptsApi->update_prompt_campaign: %s\n" % e
+    print("Exception when calling PromptsApi->update_prompt_campaign: %s\n" % e)
 ```
 
 ### Parameters
@@ -725,29 +802,31 @@ Update Prompt Content
 
 Updates a Prompt Content
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.PromptsApi()
+api_instance = bombbomb.PromptsApi(bombbomb.ApiClient(configuration))
 id = 'id_example' # str | The prompt's id
 alternate_content_id = 'alternate_content_id_example' # str | The alternate content id
 new_email_id = 'new_email_id_example' # str | The prompt's new email id
 og_email_id = 'og_email_id_example' # str | The prompt's original email id
 new_example_video_id = 'new_example_video_id_example' # str | The prompt's new tutorial video id
 
-try: 
+try:
     # Update Prompt Content
     api_instance.update_prompt_template(id, alternate_content_id, new_email_id, og_email_id, new_example_video_id)
 except ApiException as e:
-    print "Exception when calling PromptsApi->update_prompt_template: %s\n" % e
+    print("Exception when calling PromptsApi->update_prompt_template: %s\n" % e)
 ```
 
 ### Parameters

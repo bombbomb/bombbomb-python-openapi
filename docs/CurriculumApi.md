@@ -15,26 +15,28 @@ Get Curricula
 
 Get Curricula, optionally with progress included.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.CurriculumApi()
+api_instance = bombbomb.CurriculumApi(bombbomb.ApiClient(configuration))
 include_progress = true # bool | Whether to return progress with the curriculum. (optional)
 
-try: 
+try:
     # Get Curricula
     api_response = api_instance.get_curricula(include_progress=include_progress)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling CurriculumApi->get_curricula: %s\n" % e
+    print("Exception when calling CurriculumApi->get_curricula: %s\n" % e)
 ```
 
 ### Parameters
@@ -65,25 +67,27 @@ Get Detailed For User
 
 Get all curricula for user including progress for each curriculum.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.CurriculumApi()
+api_instance = bombbomb.CurriculumApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Get Detailed For User
     api_response = api_instance.get_user_curriculum_with_progress()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling CurriculumApi->get_user_curriculum_with_progress: %s\n" % e
+    print("Exception when calling CurriculumApi->get_user_curriculum_with_progress: %s\n" % e)
 ```
 
 ### Parameters

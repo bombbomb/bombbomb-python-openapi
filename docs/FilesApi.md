@@ -18,25 +18,27 @@ Delete file
 
 Deletes a users file
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.FilesApi()
+api_instance = bombbomb.FilesApi(bombbomb.ApiClient(configuration))
 doc_id = 'doc_id_example' # str | Id of document
 
-try: 
+try:
     # Delete file
     api_instance.doc_host_delete(doc_id)
 except ApiException as e:
-    print "Exception when calling FilesApi->doc_host_delete: %s\n" % e
+    print("Exception when calling FilesApi->doc_host_delete: %s\n" % e)
 ```
 
 ### Parameters
@@ -67,26 +69,28 @@ Get file
 
 Get a single file by id
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.FilesApi()
+api_instance = bombbomb.FilesApi(bombbomb.ApiClient(configuration))
 doc_id = 'doc_id_example' # str | Id of document
 
-try: 
+try:
     # Get file
     api_response = api_instance.doc_host_get(doc_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling FilesApi->doc_host_get: %s\n" % e
+    print("Exception when calling FilesApi->doc_host_get: %s\n" % e)
 ```
 
 ### Parameters
@@ -117,25 +121,27 @@ List all files
 
 List all uploaded user files
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.FilesApi()
+api_instance = bombbomb.FilesApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # List all files
     api_response = api_instance.doc_host_list()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling FilesApi->doc_host_list: %s\n" % e
+    print("Exception when calling FilesApi->doc_host_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -163,26 +169,28 @@ Upload a file
 
 Upload a new file
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.FilesApi()
+api_instance = bombbomb.FilesApi(bombbomb.ApiClient(configuration))
 file = 'file_example' # str | The file being uploaded
 
-try: 
+try:
     # Upload a file
     api_response = api_instance.doc_host_upload_v2(file)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling FilesApi->doc_host_upload_v2: %s\n" % e
+    print("Exception when calling FilesApi->doc_host_upload_v2: %s\n" % e)
 ```
 
 ### Parameters
@@ -213,27 +221,29 @@ Get paged hosted images
 
 Get a specific page of uploaded images available to the user.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.FilesApi()
+api_instance = bombbomb.FilesApi(bombbomb.ApiClient(configuration))
 page_size = 'page_size_example' # str | The number of items to retrieve in a single db query.
 page = 'page_example' # str | Zero-based index of the page of data to retrieve from the db.
 search = 'search_example' # str | Filter results with names that match the search term. (optional)
 
-try: 
+try:
     # Get paged hosted images
     api_instance.get_hosted_images_paged(page_size, page, search=search)
 except ApiException as e:
-    print "Exception when calling FilesApi->get_hosted_images_paged: %s\n" % e
+    print("Exception when calling FilesApi->get_hosted_images_paged: %s\n" % e)
 ```
 
 ### Parameters

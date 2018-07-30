@@ -18,18 +18,20 @@ Activate an integration for a user.
 
 Provide the correct parameters to enable an integration. Required Parameters vary based on the desired          integration. Integrations requiring OAuth will provide the OAuth link that the user must be presented.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.IntegrationsApi()
+api_instance = bombbomb.IntegrationsApi(bombbomb.ApiClient(configuration))
 code = 'code_example' # str | The identifier of the integration.
 key = 'key_example' # str | The key value. (optional)
 secret = 'secret_example' # str | The secret value. (optional)
@@ -37,11 +39,11 @@ token = 'token_example' # str | The token value. (optional)
 data = 'data_example' # str | The data value as JSON. (optional)
 overwrite = 'overwrite_example' # str | Boolean value to know whether or not to delete the integration if it already exists (optional)
 
-try: 
+try:
     # Activate an integration for a user.
     api_instance.connect_integration(code, key=key, secret=secret, token=token, data=data, overwrite=overwrite)
 except ApiException as e:
-    print "Exception when calling IntegrationsApi->connect_integration: %s\n" % e
+    print("Exception when calling IntegrationsApi->connect_integration: %s\n" % e)
 ```
 
 ### Parameters
@@ -77,26 +79,28 @@ Remove an integration for a user.
 
 Remove an integration by providing the integration id or integration code. Only provide one of the             parameters.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.IntegrationsApi()
+api_instance = bombbomb.IntegrationsApi(bombbomb.ApiClient(configuration))
 id = 'id_example' # str | Integration ID (optional)
 code = 'code_example' # str | Integration Code (optional)
 
-try: 
+try:
     # Remove an integration for a user.
     api_instance.delete_integration(id=id, code=code)
 except ApiException as e:
-    print "Exception when calling IntegrationsApi->delete_integration: %s\n" % e
+    print("Exception when calling IntegrationsApi->delete_integration: %s\n" % e)
 ```
 
 ### Parameters
@@ -128,25 +132,27 @@ Get health for a given integration
 
 Get health for an integration.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.IntegrationsApi()
+api_instance = bombbomb.IntegrationsApi(bombbomb.ApiClient(configuration))
 code = 'code_example' # str | The integration code for which to retrieve the information from
 
-try: 
+try:
     # Get health for a given integration
     api_instance.get_integration_health(code)
 except ApiException as e:
-    print "Exception when calling IntegrationsApi->get_integration_health: %s\n" % e
+    print("Exception when calling IntegrationsApi->get_integration_health: %s\n" % e)
 ```
 
 ### Parameters
@@ -177,25 +183,27 @@ Get page components for a given integration
 
 Get all page components for an integration.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.IntegrationsApi()
+api_instance = bombbomb.IntegrationsApi(bombbomb.ApiClient(configuration))
 integration_name = 'integration_name_example' # str | The integration for which to retrieve HTML page components.
 
-try: 
+try:
     # Get page components for a given integration
     api_instance.get_integration_page_components(integration_name)
 except ApiException as e:
-    print "Exception when calling IntegrationsApi->get_integration_page_components: %s\n" % e
+    print("Exception when calling IntegrationsApi->get_integration_page_components: %s\n" % e)
 ```
 
 ### Parameters
@@ -226,26 +234,28 @@ Synchronize your integration list or lists.
 
 Synchronize your integration contact list with the service you are integrated with. If no integration code is provided, all integrations will be synchronized.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.IntegrationsApi()
+api_instance = bombbomb.IntegrationsApi(bombbomb.ApiClient(configuration))
 integration_id = 'integration_id_example' # str | The integration to sync lists for. All integrations will sync if nothing is provided. (optional)
 
-try: 
+try:
     # Synchronize your integration list or lists.
     api_response = api_instance.sync_users_integrated_lists(integration_id=integration_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling IntegrationsApi->sync_users_integrated_lists: %s\n" % e
+    print("Exception when calling IntegrationsApi->sync_users_integrated_lists: %s\n" % e)
 ```
 
 ### Parameters

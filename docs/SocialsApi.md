@@ -25,24 +25,26 @@ Gets facebook pages
 
 Gets facebook pages by client id
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Gets facebook pages
     api_instance.get_facebook_pages()
 except ApiException as e:
-    print "Exception when calling SocialsApi->get_facebook_pages: %s\n" % e
+    print("Exception when calling SocialsApi->get_facebook_pages: %s\n" % e)
 ```
 
 ### Parameters
@@ -70,26 +72,28 @@ Gets the social email properties
 
 Gets the social email properties
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 email_id = 'email_id_example' # str | This is the email Id for the email url
 social_content_id = 'social_content_id_example' # str | This is the social content Id
 
-try: 
+try:
     # Gets the social email properties
     api_instance.get_social_article_properties(email_id, social_content_id)
 except ApiException as e:
-    print "Exception when calling SocialsApi->get_social_article_properties: %s\n" % e
+    print("Exception when calling SocialsApi->get_social_article_properties: %s\n" % e)
 ```
 
 ### Parameters
@@ -121,25 +125,27 @@ Get authorizations for all social integration
 
 Get authorizations and autoshares for all social integration and has redirect for user to login
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 client_group_id = 'client_group_id_example' # str | ID of the client group association (optional)
 
-try: 
+try:
     # Get authorizations for all social integration
     api_instance.get_social_authorizations(client_group_id=client_group_id)
 except ApiException as e:
-    print "Exception when calling SocialsApi->get_social_authorizations: %s\n" % e
+    print("Exception when calling SocialsApi->get_social_authorizations: %s\n" % e)
 ```
 
 ### Parameters
@@ -170,25 +176,27 @@ Gets the profile properties
 
 Gets the social profile properties
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 social_type = 'social_type_example' # str | The social type
 
-try: 
+try:
     # Gets the profile properties
     api_instance.get_social_profile_properties(social_type)
 except ApiException as e:
-    print "Exception when calling SocialsApi->get_social_profile_properties: %s\n" % e
+    print("Exception when calling SocialsApi->get_social_profile_properties: %s\n" % e)
 ```
 
 ### Parameters
@@ -219,25 +227,27 @@ Get social stats for a prompt
 
 Get social stats for a prompt by id
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 prompt_id = 'prompt_id_example' # str | ID of the prompt
 
-try: 
+try:
     # Get social stats for a prompt
     api_instance.get_social_stats(prompt_id)
 except ApiException as e:
-    print "Exception when calling SocialsApi->get_social_stats: %s\n" % e
+    print("Exception when calling SocialsApi->get_social_stats: %s\n" % e)
 ```
 
 ### Parameters
@@ -268,25 +278,27 @@ Creates social content
 
 Creates social content for an email
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 email_id = 'email_id_example' # str | The email's id
 
-try: 
+try:
     # Creates social content
     api_instance.post_social_content(email_id)
 except ApiException as e:
-    print "Exception when calling SocialsApi->post_social_content: %s\n" % e
+    print("Exception when calling SocialsApi->post_social_content: %s\n" % e)
 ```
 
 ### Parameters
@@ -317,25 +329,27 @@ Sends social content
 
 Sends social content that failed for a user via their associated prompt
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 prompt_id = 'prompt_id_example' # str | The prompt id
 
-try: 
+try:
     # Sends social content
     api_instance.retry_social_send(prompt_id)
 except ApiException as e:
-    print "Exception when calling SocialsApi->retry_social_send: %s\n" % e
+    print("Exception when calling SocialsApi->retry_social_send: %s\n" % e)
 ```
 
 ### Parameters
@@ -366,26 +380,28 @@ Sends social content
 
 Sends social content for a user via their associated prompt
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 prompt_id = 'prompt_id_example' # str | The prompt id
 social_type = 'social_type_example' # str | The destination for social content
 
-try: 
+try:
     # Sends social content
     api_instance.send_social(prompt_id, social_type)
 except ApiException as e:
-    print "Exception when calling SocialsApi->send_social: %s\n" % e
+    print("Exception when calling SocialsApi->send_social: %s\n" % e)
 ```
 
 ### Parameters
@@ -417,27 +433,29 @@ Gets the auto shares from the client group assoc id
 
 Gets the auto shares from the client group assoc id
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 send_mechanism = 'send_mechanism_example' # str | The send mechanism for the prompt
 client_group_id = 'client_group_id_example' # str | ID of the client group association
 enabled = 'enabled_example' # str | Is the send mechanism enabled? (optional)
 
-try: 
+try:
     # Gets the auto shares from the client group assoc id
     api_instance.update_client_group_send_mechanism(send_mechanism, client_group_id, enabled=enabled)
 except ApiException as e:
-    print "Exception when calling SocialsApi->update_client_group_send_mechanism: %s\n" % e
+    print("Exception when calling SocialsApi->update_client_group_send_mechanism: %s\n" % e)
 ```
 
 ### Parameters
@@ -470,26 +488,28 @@ Toggles the prompt campaigns in a users account
 
 Toggles the prompt campaigns in a users account for a social integrations on or off
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 send_mechanism = 'send_mechanism_example' # str | The send mechanism for the prompt
 enabled = 'enabled_example' # str | Is the send mechanism enabled?
 
-try: 
+try:
     # Toggles the prompt campaigns in a users account
     api_instance.update_client_groups_send_mechanism(send_mechanism, enabled)
 except ApiException as e:
-    print "Exception when calling SocialsApi->update_client_groups_send_mechanism: %s\n" % e
+    print("Exception when calling SocialsApi->update_client_groups_send_mechanism: %s\n" % e)
 ```
 
 ### Parameters
@@ -521,25 +541,27 @@ Updates facebook page Ids
 
 Updates facebook page Ids to be sent to for prompts
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 page_ids = 'page_ids_example' # str | Page Ids for the prompt
 
-try: 
+try:
     # Updates facebook page Ids
     api_instance.update_facebook_pages(page_ids)
 except ApiException as e:
-    print "Exception when calling SocialsApi->update_facebook_pages: %s\n" % e
+    print("Exception when calling SocialsApi->update_facebook_pages: %s\n" % e)
 ```
 
 ### Parameters
@@ -570,29 +592,31 @@ Updates social content
 
 Updates social content for an email
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.SocialsApi()
+api_instance = bombbomb.SocialsApi(bombbomb.ApiClient(configuration))
 social_id = 'social_id_example' # str | The social id
 title = 'title_example' # str | The title for the article (optional)
 description = 'description_example' # str | The article description (optional)
 picture_url = 'picture_url_example' # str | The article picture url (optional)
 suggested_message = 'suggested_message_example' # str | The suggested message to use (optional)
 
-try: 
+try:
     # Updates social content
     api_instance.update_social_content(social_id, title=title, description=description, picture_url=picture_url, suggested_message=suggested_message)
 except ApiException as e:
-    print "Exception when calling SocialsApi->update_social_content: %s\n" % e
+    print("Exception when calling SocialsApi->update_social_content: %s\n" % e)
 ```
 
 ### Parameters

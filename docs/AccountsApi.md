@@ -20,24 +20,26 @@ Get account details.
 
 Get the details of the user's account.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.AccountsApi()
+api_instance = bombbomb.AccountsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Get account details.
     api_instance.account_details()
 except ApiException as e:
-    print "Exception when calling AccountsApi->account_details: %s\n" % e
+    print("Exception when calling AccountsApi->account_details: %s\n" % e)
 ```
 
 ### Parameters
@@ -65,18 +67,20 @@ Create Account
 
 Creates a new BombBomb account. This method is currently only available to paid seat admins.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.AccountsApi()
+api_instance = bombbomb.AccountsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 first_name = 'first_name_example' # str | First name of the user.
 last_name = 'last_name_example' # str | Last name of the user.
@@ -90,12 +94,12 @@ city = 'city_example' # str | City of the user. (optional)
 postal_code = 'postal_code_example' # str | Postal/Zip code of the user. (optional)
 prevent_welcome_email = true # bool | prevent an email with login credentials from being sent to the new account. must be set to 'true' (optional)
 
-try: 
+try:
     # Create Account
     api_response = api_instance.create_account(team_id, first_name, last_name, email_address, company_name, phone, country=country, industry=industry, address=address, city=city, postal_code=postal_code, prevent_welcome_email=prevent_welcome_email)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling AccountsApi->create_account: %s\n" % e
+    print("Exception when calling AccountsApi->create_account: %s\n" % e)
 ```
 
 ### Parameters
@@ -137,27 +141,29 @@ Get Client Statistics
 
 Gets general statics for a Client
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.AccountsApi()
+api_instance = bombbomb.AccountsApi(bombbomb.ApiClient(configuration))
 client_id = 'client_id_example' # str | Client ID of the account to retrieve. Defaults to yourself. (optional)
 refresh = true # bool | Boolean for whether data returned should be from cache or not. (optional)
 statistic_values = 'statistic_values_example' # str | Array of data that should be returned, used exclusively for cacheless data (optional)
 
-try: 
+try:
     # Get Client Statistics
     api_instance.get_client_statistics(client_id=client_id, refresh=refresh, statistic_values=statistic_values)
 except ApiException as e:
-    print "Exception when calling AccountsApi->get_client_statistics: %s\n" % e
+    print("Exception when calling AccountsApi->get_client_statistics: %s\n" % e)
 ```
 
 ### Parameters
@@ -190,24 +196,26 @@ Gets user country
 
 Gets the users country
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.AccountsApi()
+api_instance = bombbomb.AccountsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Gets user country
     api_instance.get_user_country()
 except ApiException as e:
-    print "Exception when calling AccountsApi->get_user_country: %s\n" % e
+    print("Exception when calling AccountsApi->get_user_country: %s\n" % e)
 ```
 
 ### Parameters
@@ -235,24 +243,26 @@ Reset API key
 
 Resets the current user's API key and returns the new key
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.AccountsApi()
+api_instance = bombbomb.AccountsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Reset API key
     api_instance.reset_api_key()
 except ApiException as e:
-    print "Exception when calling AccountsApi->reset_api_key: %s\n" % e
+    print("Exception when calling AccountsApi->reset_api_key: %s\n" % e)
 ```
 
 ### Parameters
@@ -280,24 +290,26 @@ Check if subscription purchase allowed.
 
 Check whether the user can purchase a subscription.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.AccountsApi()
+api_instance = bombbomb.AccountsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Check if subscription purchase allowed.
     api_instance.subscription_purchase_allowed()
 except ApiException as e:
-    print "Exception when calling AccountsApi->subscription_purchase_allowed: %s\n" % e
+    print("Exception when calling AccountsApi->subscription_purchase_allowed: %s\n" % e)
 ```
 
 ### Parameters
@@ -325,25 +337,27 @@ Add profile information.
 
 Add profile information to this users account
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.AccountsApi()
+api_instance = bombbomb.AccountsApi(bombbomb.ApiClient(configuration))
 profile_data = 'profile_data_example' # str | Profile field information for the account (optional)
 
-try: 
+try:
     # Add profile information.
     api_instance.update_profile_data(profile_data=profile_data)
 except ApiException as e:
-    print "Exception when calling AccountsApi->update_profile_data: %s\n" % e
+    print("Exception when calling AccountsApi->update_profile_data: %s\n" % e)
 ```
 
 ### Parameters

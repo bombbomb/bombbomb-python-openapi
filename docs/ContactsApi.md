@@ -21,26 +21,28 @@ Add contacts from a CSV file.
 
 Add multiple contacts through the upload importer from a CSV file.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ContactsApi()
+api_instance = bombbomb.ContactsApi(bombbomb.ApiClient(configuration))
 mapping_data = 'mapping_data_example' # str | The info sent for the contacts
 list_data = 'list_data_example' # str | The info sent with the import for the list
 
-try: 
+try:
     # Add contacts from a CSV file.
     api_instance.add_contacts_csv(mapping_data, list_data)
 except ApiException as e:
-    print "Exception when calling ContactsApi->add_contacts_csv: %s\n" % e
+    print("Exception when calling ContactsApi->add_contacts_csv: %s\n" % e)
 ```
 
 ### Parameters
@@ -72,26 +74,28 @@ Add a contact.
 
 Add a contact to the users list.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ContactsApi()
+api_instance = bombbomb.ContactsApi(bombbomb.ApiClient(configuration))
 contact_email = 'contact_email_example' # str | Email of the new contact we are adding
 contact_info = 'contact_info_example' # str | The info sent for this contact (optional)
 
-try: 
+try:
     # Add a contact.
     api_instance.add_new_contact(contact_email, contact_info=contact_info)
 except ApiException as e:
-    print "Exception when calling ContactsApi->add_new_contact: %s\n" % e
+    print("Exception when calling ContactsApi->add_new_contact: %s\n" % e)
 ```
 
 ### Parameters
@@ -123,26 +127,28 @@ Add custom fields.
 
 Add a new custom field.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ContactsApi()
+api_instance = bombbomb.ContactsApi(bombbomb.ApiClient(configuration))
 field_name = 'field_name_example' # str | Custom field name to be added
 field_type = 'field_type_example' # str | Custom field type for the field to be added (optional)
 
-try: 
+try:
     # Add custom fields.
     api_instance.add_new_custom_field(field_name, field_type=field_type)
 except ApiException as e:
-    print "Exception when calling ContactsApi->add_new_custom_field: %s\n" % e
+    print("Exception when calling ContactsApi->add_new_custom_field: %s\n" % e)
 ```
 
 ### Parameters
@@ -174,26 +180,28 @@ Add pasted contacts.
 
 Add the pasted contacts to the users list.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ContactsApi()
+api_instance = bombbomb.ContactsApi(bombbomb.ApiClient(configuration))
 contact_emails = 'contact_emails_example' # str | Emails array of the new contacts we are adding
 list_info = 'list_info_example' # str | Information about the lists id, recalculations on totals, consent etc (optional)
 
-try: 
+try:
     # Add pasted contacts.
     api_instance.add_pasted_contacts(contact_emails, list_info=list_info)
 except ApiException as e:
-    print "Exception when calling ContactsApi->add_pasted_contacts: %s\n" % e
+    print("Exception when calling ContactsApi->add_pasted_contacts: %s\n" % e)
 ```
 
 ### Parameters
@@ -225,25 +233,27 @@ Format CSV.
 
 Format a CSV file to an object.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ContactsApi()
+api_instance = bombbomb.ContactsApi(bombbomb.ApiClient(configuration))
 file = 'file_example' # str | The CSV file being uploaded
 
-try: 
+try:
     # Format CSV.
     api_instance.c_sv_to_object(file)
 except ApiException as e:
-    print "Exception when calling ContactsApi->c_sv_to_object: %s\n" % e
+    print("Exception when calling ContactsApi->c_sv_to_object: %s\n" % e)
 ```
 
 ### Parameters
@@ -274,26 +284,28 @@ Delete Contacts
 
 Delete all contacts within a list, or provide a comma separated list of contactIds to delete.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ContactsApi()
+api_instance = bombbomb.ContactsApi(bombbomb.ApiClient(configuration))
 list_id = 'list_id_example' # str | The list of contacts to be deleted. (optional)
 contact_ids = 'contact_ids_example' # str | comma separated list of contact ids to delete (optional)
 
-try: 
+try:
     # Delete Contacts
     api_instance.delete_contacts(list_id=list_id, contact_ids=contact_ids)
 except ApiException as e:
-    print "Exception when calling ContactsApi->delete_contacts: %s\n" % e
+    print("Exception when calling ContactsApi->delete_contacts: %s\n" % e)
 ```
 
 ### Parameters
@@ -325,25 +337,27 @@ Get Contact Details
 
 Get the contact details
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ContactsApi()
+api_instance = bombbomb.ContactsApi(bombbomb.ApiClient(configuration))
 id = 'id_example' # str | Guid for the contact.
 
-try: 
+try:
     # Get Contact Details
     api_instance.get_contact_by_id(id)
 except ApiException as e:
-    print "Exception when calling ContactsApi->get_contact_by_id: %s\n" % e
+    print("Exception when calling ContactsApi->get_contact_by_id: %s\n" % e)
 ```
 
 ### Parameters
@@ -374,24 +388,26 @@ Get custom fields.
 
 Get the current users custom fields.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ContactsApi()
+api_instance = bombbomb.ContactsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Get custom fields.
     api_instance.get_custom_fields()
 except ApiException as e:
-    print "Exception when calling ContactsApi->get_custom_fields: %s\n" % e
+    print("Exception when calling ContactsApi->get_custom_fields: %s\n" % e)
 ```
 
 ### Parameters

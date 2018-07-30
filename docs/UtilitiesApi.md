@@ -17,27 +17,29 @@ Create an OAuth Client
 
 Creates an OAuth Client managed by the user
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.UtilitiesApi()
+api_instance = bombbomb.UtilitiesApi(bombbomb.ApiClient(configuration))
 name = 'name_example' # str | The name of the OAuth client. e.g. MyCrm DEV, or MyCrm PROD
 redirect_uri = 'redirect_uri_example' # str | The URI to direct the client to after logging in.
 
-try: 
+try:
     # Create an OAuth Client
     api_response = api_instance.create_o_auth_client(name, redirect_uri)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UtilitiesApi->create_o_auth_client: %s\n" % e
+    print("Exception when calling UtilitiesApi->create_o_auth_client: %s\n" % e)
 ```
 
 ### Parameters
@@ -69,25 +71,27 @@ Delete an OAuth Client
 
 Deletes an OAuth Client managed by the user
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.UtilitiesApi()
+api_instance = bombbomb.UtilitiesApi(bombbomb.ApiClient(configuration))
 id = 'id_example' # str | The id of the OAuth Client
 
-try: 
+try:
     # Delete an OAuth Client
     api_instance.delete_o_auth_client(id)
 except ApiException as e:
-    print "Exception when calling UtilitiesApi->delete_o_auth_client: %s\n" % e
+    print("Exception when calling UtilitiesApi->delete_o_auth_client: %s\n" % e)
 ```
 
 ### Parameters
@@ -118,25 +122,27 @@ Lists OAuth Clients
 
 Enumerates OAuth Clients managed by the user
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.UtilitiesApi()
+api_instance = bombbomb.UtilitiesApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Lists OAuth Clients
     api_response = api_instance.get_o_auth_clients()
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling UtilitiesApi->get_o_auth_clients: %s\n" % e
+    print("Exception when calling UtilitiesApi->get_o_auth_clients: %s\n" % e)
 ```
 
 ### Parameters
@@ -164,8 +170,9 @@ Describes this api
 
 Describes methods available through the API.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
@@ -174,11 +181,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = bombbomb.UtilitiesApi()
 
-try: 
+try:
     # Describes this api
     api_instance.get_spec()
 except ApiException as e:
-    print "Exception when calling UtilitiesApi->get_spec: %s\n" % e
+    print("Exception when calling UtilitiesApi->get_spec: %s\n" % e)
 ```
 
 ### Parameters

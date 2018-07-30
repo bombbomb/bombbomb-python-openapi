@@ -16,6 +16,8 @@ Method | HTTP request | Description
 [**get_jericho_sends**](TeamsApi.md#get_jericho_sends) | **GET** /team/{teamId}/jericho | List Jericho Sends
 [**get_jericho_stats**](TeamsApi.md#get_jericho_stats) | **GET** /team/{teamId}/jericho/{jerichoId}/performance | Gets Jericho performance statistics
 [**get_paged_client_group_members**](TeamsApi.md#get_paged_client_group_members) | **GET** /team/{teamId}/members | List Team Members
+[**get_prompt_monthly_stats**](TeamsApi.md#get_prompt_monthly_stats) | **GET** /team/{month}/{year}/monthStats | Jericho Monthly Stats
+[**get_prompt_overview**](TeamsApi.md#get_prompt_overview) | **GET** /team/promptOverview | Get Prompt Overview
 [**get_subteams**](TeamsApi.md#get_subteams) | **GET** /team/{teamId}/subteam | List Subteams
 [**get_team_prompt_aggregate_stats**](TeamsApi.md#get_team_prompt_aggregate_stats) | **GET** /team/{clientGroupId}/campaign/stats | Get aggregate stats for campaigns
 [**get_team_prompt_campaigns**](TeamsApi.md#get_team_prompt_campaigns) | **GET** /team/{clientGroupId}/campaign | Get campaigns for team
@@ -35,30 +37,32 @@ Add Member to Team
 
 Adds a member to a team.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 admin = true # bool | Set if the user is an admin of this team. (optional)
 subgroup_ids = 'subgroup_ids_example' # str | Subgroup IDs to add user to (optional)
 user_email = 'user_email_example' # str | The email of the member being added to the team. (optional)
 user_id = 'user_id_example' # str | The user id of the member being added to the team. (optional)
 
-try: 
+try:
     # Add Member to Team
     api_response = api_instance.add_team_member(team_id, admin=admin, subgroup_ids=subgroup_ids, user_email=user_email, user_id=user_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->add_team_member: %s\n" % e
+    print("Exception when calling TeamsApi->add_team_member: %s\n" % e)
 ```
 
 ### Parameters
@@ -93,28 +97,30 @@ Add users to group.
 
 Add a new or existing user to group.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 user_details = 'user_details_example' # str | Array of emails or objects containing details needed to create user
 send_welcome_email = 'send_welcome_email_example' # str | Whether to send welcome email to new users (optional)
 subgroup_ids = 'subgroup_ids_example' # str | Subgroup IDs to add user to (optional)
 
-try: 
+try:
     # Add users to group.
     api_instance.add_users(team_id, user_details, send_welcome_email=send_welcome_email, subgroup_ids=subgroup_ids)
 except ApiException as e:
-    print "Exception when calling TeamsApi->add_users: %s\n" % e
+    print("Exception when calling TeamsApi->add_users: %s\n" % e)
 ```
 
 ### Parameters
@@ -148,29 +154,31 @@ Add members to group from CSV
 
 Imports members to a group from a given CSV ID.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 csv_import_id = 'csv_import_id_example' # str | ID of the CSV to import
 map = 'map_example' # str | Object to use when mapping import to AccountCreateDetails. Key is property name on details, value is CSV column number.
 send_welcome_email = 'send_welcome_email_example' # str | Whether to send welcome email to new users (optional)
 subgroup_ids = 'subgroup_ids_example' # str | Subgroup IDs to add user to (optional)
 
-try: 
+try:
     # Add members to group from CSV
     api_instance.add_users_from_csv(team_id, csv_import_id, map, send_welcome_email=send_welcome_email, subgroup_ids=subgroup_ids)
 except ApiException as e:
-    print "Exception when calling TeamsApi->add_users_from_csv: %s\n" % e
+    print("Exception when calling TeamsApi->add_users_from_csv: %s\n" % e)
 ```
 
 ### Parameters
@@ -205,25 +213,27 @@ Cancel a Jericho Send
 
 Cancels a scheduled Jericho send from being sent.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 jericho_id = 'jericho_id_example' # str | ID of the Jericho Job to cancel
 
-try: 
+try:
     # Cancel a Jericho Send
     api_instance.cancel_jericho_send(jericho_id)
 except ApiException as e:
-    print "Exception when calling TeamsApi->cancel_jericho_send: %s\n" % e
+    print("Exception when calling TeamsApi->cancel_jericho_send: %s\n" % e)
 ```
 
 ### Parameters
@@ -254,27 +264,29 @@ Add a Subteam
 
 Adds a subteam to a parent team
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 name = 'name_example' # str | The subteam's name.
 
-try: 
+try:
     # Add a Subteam
     api_response = api_instance.create_subteam(team_id, name)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->create_subteam: %s\n" % e
+    print("Exception when calling TeamsApi->create_subteam: %s\n" % e)
 ```
 
 ### Parameters
@@ -306,27 +318,29 @@ Delete Subteam
 
 Deletes a subteam
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 subteam_id = 'subteam_id_example' # str | The subteam you wish to delete.
 
-try: 
+try:
     # Delete Subteam
     api_response = api_instance.delete_subteam(team_id, subteam_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->delete_subteam: %s\n" % e
+    print("Exception when calling TeamsApi->delete_subteam: %s\n" % e)
 ```
 
 ### Parameters
@@ -358,25 +372,27 @@ Lists team associations
 
 Returns a collection of team associations for a given user
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 client_id = 'client_id_example' # str | The clientId requesting group associations.
 
-try: 
+try:
     # Lists team associations
     api_instance.get_all_client_group_associations(client_id)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_all_client_group_associations: %s\n" % e
+    print("Exception when calling TeamsApi->get_all_client_group_associations: %s\n" % e)
 ```
 
 ### Parameters
@@ -407,18 +423,20 @@ Lists team assets
 
 Returns a collection of assets
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 asset_type = 'asset_type_example' # str | The type of assets.
 team_id = 'team_id_example' # str | The team containing the assets. (optional)
 auto_tag_name = 'auto_tag_name_example' # str | The auto tag name containing the assets. (optional)
@@ -426,12 +444,12 @@ page_size = 'page_size_example' # str | The number of items to retrieve in a sin
 page = 'page_example' # str | Zero-based index of the page of data to retrieve from the db. (optional)
 search = 'search_example' # str | Search words. (optional)
 
-try: 
+try:
     # Lists team assets
     api_response = api_instance.get_client_group_assets(asset_type, team_id=team_id, auto_tag_name=auto_tag_name, page_size=page_size, page=page, search=search)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_client_group_assets: %s\n" % e
+    print("Exception when calling TeamsApi->get_client_group_assets: %s\n" % e)
 ```
 
 ### Parameters
@@ -467,26 +485,28 @@ Get Team statistics
 
 Get top level statistic data for a Team
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 member_status = 'member_status_example' # str | The status of members to query for (optional)
 
-try: 
+try:
     # Get Team statistics
     api_instance.get_client_group_statistics(team_id, member_status=member_status)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_client_group_statistics: %s\n" % e
+    print("Exception when calling TeamsApi->get_client_group_statistics: %s\n" % e)
 ```
 
 ### Parameters
@@ -518,26 +538,28 @@ List Jericho Sends
 
 Lists Jericho sends, both pending and sent.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team whose Jericho sends you wish to see.
 
-try: 
+try:
     # List Jericho Sends
     api_response = api_instance.get_jericho_sends(team_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_jericho_sends: %s\n" % e
+    print("Exception when calling TeamsApi->get_jericho_sends: %s\n" % e)
 ```
 
 ### Parameters
@@ -568,27 +590,29 @@ Gets Jericho performance statistics
 
 Returns an aggregate view of the performance of a Jericho send
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 jericho_id = 'jericho_id_example' # str | ID of the Jericho job
 team_id = 'team_id_example' # str | ID of team through which Jericho was sent
 
-try: 
+try:
     # Gets Jericho performance statistics
     api_response = api_instance.get_jericho_stats(jericho_id, team_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_jericho_stats: %s\n" % e
+    print("Exception when calling TeamsApi->get_jericho_stats: %s\n" % e)
 ```
 
 ### Parameters
@@ -620,18 +644,20 @@ List Team Members
 
 Get a paginated listing of Team members
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 page_size = 'page_size_example' # str | Amount of records to return in a page.
 page = 'page_example' # str | The page to return.
@@ -640,11 +666,11 @@ search = 'search_example' # str | Filter results with names that match the searc
 order_by = 'order_by_example' # str | Key to order results by (optional)
 order_direction = 'order_direction_example' # str | ASC or DESC (optional)
 
-try: 
+try:
     # List Team Members
     api_instance.get_paged_client_group_members(team_id, page_size, page, status=status, search=search, order_by=order_by, order_direction=order_direction)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_paged_client_group_members: %s\n" % e
+    print("Exception when calling TeamsApi->get_paged_client_group_members: %s\n" % e)
 ```
 
 ### Parameters
@@ -674,6 +700,108 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_prompt_monthly_stats**
+> str get_prompt_monthly_stats(month, year)
+
+Jericho Monthly Stats
+
+Jericho Monthly Stats
+
+### Example
+```python
+from __future__ import print_function
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
+month = 'month_example' # str | The month whose Jericho sends you wish to see.
+year = 'year_example' # str | The year whose Jericho sends you wish to see.
+
+try:
+    # Jericho Monthly Stats
+    api_response = api_instance.get_prompt_monthly_stats(month, year)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TeamsApi->get_prompt_monthly_stats: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **month** | **str**| The month whose Jericho sends you wish to see. | 
+ **year** | **str**| The year whose Jericho sends you wish to see. | 
+
+### Return type
+
+**str**
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_prompt_overview**
+> str get_prompt_overview()
+
+Get Prompt Overview
+
+Get Prompt Overview
+
+### Example
+```python
+from __future__ import print_function
+import time
+import bombbomb
+from bombbomb.rest import ApiException
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: BBOAuth2
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# create an instance of the API class
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
+
+try:
+    # Get Prompt Overview
+    api_response = api_instance.get_prompt_overview()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TeamsApi->get_prompt_overview: %s\n" % e)
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**str**
+
+### Authorization
+
+[BBOAuth2](../README.md#BBOAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_subteams**
 > list[TeamPublicRepresentation] get_subteams(team_id)
 
@@ -681,26 +809,24 @@ List Subteams
 
 Returns a collection of subteams for a parent team
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
-# Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
 # create an instance of the API class
 api_instance = bombbomb.TeamsApi()
 team_id = 'team_id_example' # str | The team id
 
-try: 
+try:
     # List Subteams
     api_response = api_instance.get_subteams(team_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_subteams: %s\n" % e
+    print("Exception when calling TeamsApi->get_subteams: %s\n" % e)
 ```
 
 ### Parameters
@@ -715,7 +841,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[BBOAuth2](../README.md#BBOAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -731,25 +857,27 @@ Get aggregate stats for campaigns
 
 Get all the campaigns aggregate stats
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 client_group_id = 'client_group_id_example' # str | ID of the client group association
 
-try: 
+try:
     # Get aggregate stats for campaigns
     api_instance.get_team_prompt_aggregate_stats(client_group_id)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_team_prompt_aggregate_stats: %s\n" % e
+    print("Exception when calling TeamsApi->get_team_prompt_aggregate_stats: %s\n" % e)
 ```
 
 ### Parameters
@@ -780,27 +908,29 @@ Get campaigns for team
 
 Get campaigns for the team and their stats
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 client_group_id = 'client_group_id_example' # str | ID of the client group association
 search_term = 'search_term_example' # str | The value to search for in prompt subject (optional)
 current_page = 'current_page_example' # str | The current page (optional)
 
-try: 
+try:
     # Get campaigns for team
     api_instance.get_team_prompt_campaigns(client_group_id, search_term=search_term, current_page=current_page)
 except ApiException as e:
-    print "Exception when calling TeamsApi->get_team_prompt_campaigns: %s\n" % e
+    print("Exception when calling TeamsApi->get_team_prompt_campaigns: %s\n" % e)
 ```
 
 ### Parameters
@@ -833,26 +963,28 @@ Invite a list to join the admin's social prompt team
 
 Invite to Social Prompt Team
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 list_id = 'list_id_example' # str | List to invite to the social prompt team.
 
-try: 
+try:
     # Invite a list to join the admin's social prompt team
     api_instance.invite_to_social_prompt_team(team_id, list_id)
 except ApiException as e:
-    print "Exception when calling TeamsApi->invite_to_social_prompt_team: %s\n" % e
+    print("Exception when calling TeamsApi->invite_to_social_prompt_team: %s\n" % e)
 ```
 
 ### Parameters
@@ -884,27 +1016,29 @@ Creates a Jericho send.
 
 Sends email content on behalf of members of a client group. There are two forms this send can take:         Static Email, and Video Prompt. Static emails require only an emailId.         Video Prompts build emails dynamically and require most of the other fields.         You must be an administrator of a Team Account to use this method.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 config = bombbomb.JerichoConfiguration() # JerichoConfiguration | JSON representing a Jericho configuration
 team_id = 'team_id_example' # str | The ID of the team.
 
-try: 
+try:
     # Creates a Jericho send.
     api_response = api_instance.queue_jericho_send(config, team_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->queue_jericho_send: %s\n" % e
+    print("Exception when calling TeamsApi->queue_jericho_send: %s\n" % e)
 ```
 
 ### Parameters
@@ -936,27 +1070,29 @@ Remove Member from Team
 
 Removes a member from a team.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 user_id = 'user_id_example' # str | The user id of the member being removed.
 
-try: 
+try:
     # Remove Member from Team
     api_response = api_instance.remove_member_from_team(team_id, user_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->remove_member_from_team: %s\n" % e
+    print("Exception when calling TeamsApi->remove_member_from_team: %s\n" % e)
 ```
 
 ### Parameters
@@ -988,27 +1124,29 @@ Resend invite
 
 Resend invitation to a member of a team
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 member_user_id = 'member_user_id_example' # str | The user id of the member being resent an invitation.
 
-try: 
+try:
     # Resend invite
     api_response = api_instance.resend_team_member_invitation(team_id, member_user_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->resend_team_member_invitation: %s\n" % e
+    print("Exception when calling TeamsApi->resend_team_member_invitation: %s\n" % e)
 ```
 
 ### Parameters
@@ -1040,26 +1178,28 @@ Updates the Jericho Prompt Settings
 
 Updates the prompt settings based on the original email id
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 jericho_id = 'jericho_id_example' # str | ID of the Jericho job
 
-try: 
+try:
     # Updates the Jericho Prompt Settings
     api_instance.update_jericho_prompt_send(team_id, jericho_id)
 except ApiException as e:
-    print "Exception when calling TeamsApi->update_jericho_prompt_send: %s\n" % e
+    print("Exception when calling TeamsApi->update_jericho_prompt_send: %s\n" % e)
 ```
 
 ### Parameters
@@ -1091,29 +1231,31 @@ Update a team
 
 Update fields on a team
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 name = 'name_example' # str | The name of the team (optional)
 state = 'state_example' # str | The status of the login permissions (optional)
 subteams_can_add_members = true # bool | Updates subteam member adding setting on group (optional)
 
-try: 
+try:
     # Update a team
     api_response = api_instance.update_team(team_id, name=name, state=state, subteams_can_add_members=subteams_can_add_members)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling TeamsApi->update_team: %s\n" % e
+    print("Exception when calling TeamsApi->update_team: %s\n" % e)
 ```
 
 ### Parameters
@@ -1147,28 +1289,30 @@ Update Member of Team
 
 Updates a member of a team
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.TeamsApi()
+api_instance = bombbomb.TeamsApi(bombbomb.ApiClient(configuration))
 team_id = 'team_id_example' # str | The team id
 user_id = 'user_id_example' # str | The user id of the member being added to the team.
 admin = true # bool | Set if the user is an admin of this team.
 permission_suite_id = 'permission_suite_id_example' # str | Set if the user is an admin of this team. (optional)
 
-try: 
+try:
     # Update Member of Team
     api_instance.update_team_member(team_id, user_id, admin, permission_suite_id=permission_suite_id)
 except ApiException as e:
-    print "Exception when calling TeamsApi->update_team_member: %s\n" % e
+    print("Exception when calling TeamsApi->update_team_member: %s\n" % e)
 ```
 
 ### Parameters

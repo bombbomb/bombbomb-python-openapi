@@ -14,25 +14,27 @@ Get csv
 
 Get form tracking as csv
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.FormsApi()
+api_instance = bombbomb.FormsApi(bombbomb.ApiClient(configuration))
 id = 'id_example' # str | Id of the form
 
-try: 
+try:
     # Get csv
     api_instance.get_form_tracking_as_csv(id)
 except ApiException as e:
-    print "Exception when calling FormsApi->get_form_tracking_as_csv: %s\n" % e
+    print("Exception when calling FormsApi->get_form_tracking_as_csv: %s\n" % e)
 ```
 
 ### Parameters

@@ -18,26 +18,28 @@ Video Encoding Status
 
 Get information about the current state of encoding for a given video id.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.VideosApi()
+api_instance = bombbomb.VideosApi(bombbomb.ApiClient(configuration))
 video_id = 'video_id_example' # str | The video's id.
 
-try: 
+try:
     # Video Encoding Status
     api_response = api_instance.get_video_encoding_status(video_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling VideosApi->get_video_encoding_status: %s\n" % e
+    print("Exception when calling VideosApi->get_video_encoding_status: %s\n" % e)
 ```
 
 ### Parameters
@@ -68,27 +70,29 @@ Get Live Video Recorder HTML
 
 Returns an object with a number of properties to help you put a video recorder on your site.         This is to be used in conjunction with the VideoRecordedLive call one the user has confirmed in your UI that         the video is how they want it.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.VideosApi()
+api_instance = bombbomb.VideosApi(bombbomb.ApiClient(configuration))
 width = 56 # int | The width of the recorder to present. (optional)
 video_id = 'video_id_example' # str | The id of the video to record (optional)
 
-try: 
+try:
     # Get Live Video Recorder HTML
     api_response = api_instance.get_video_recorder(width=width, video_id=video_id)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling VideosApi->get_video_recorder: %s\n" % e
+    print("Exception when calling VideosApi->get_video_recorder: %s\n" % e)
 ```
 
 ### Parameters
@@ -120,28 +124,30 @@ Completes a live recording
 
 Used in conjunction with the live recorder method to mark a video recording as complete.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.VideosApi()
+api_instance = bombbomb.VideosApi(bombbomb.ApiClient(configuration))
 video_id = 'video_id_example' # str | The id of the video to mark as done.
 filename = 'filename_example' # str | The filename that was chosen as the final video.
 title = 'title_example' # str | The title to give the video
 
-try: 
+try:
     # Completes a live recording
     api_response = api_instance.mark_live_recording_complete(video_id, filename, title)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling VideosApi->mark_live_recording_complete: %s\n" % e
+    print("Exception when calling VideosApi->mark_live_recording_complete: %s\n" % e)
 ```
 
 ### Parameters
@@ -174,8 +180,9 @@ Generate Signed Url
 
 Generates a signed url to be used for video uploads.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
@@ -186,12 +193,12 @@ api_instance = bombbomb.VideosApi()
 policy = bombbomb.SignUploadRequest() # SignUploadRequest | The policy to sign
 v4 = true # bool | Whether to do v4 signing (optional)
 
-try: 
+try:
     # Generate Signed Url
     api_response = api_instance.sign_upload(policy, v4=v4)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling VideosApi->sign_upload: %s\n" % e
+    print("Exception when calling VideosApi->sign_upload: %s\n" % e)
 ```
 
 ### Parameters
@@ -223,27 +230,29 @@ Upload thumbnail
 
 Upload a new video thumbnail
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.VideosApi()
+api_instance = bombbomb.VideosApi(bombbomb.ApiClient(configuration))
 video_id = 'video_id_example' # str | The id of the video
 thumbnail = 'thumbnail_example' # str | The thumbnail being uploaded
 custom = true # bool | The default email to use. (optional)
 
-try: 
+try:
     # Upload thumbnail
     api_instance.update_video_thumbnail_v2(video_id, thumbnail, custom=custom)
 except ApiException as e:
-    print "Exception when calling VideosApi->update_video_thumbnail_v2: %s\n" % e
+    print("Exception when calling VideosApi->update_video_thumbnail_v2: %s\n" % e)
 ```
 
 ### Parameters

@@ -24,29 +24,31 @@ Create an Email with Printing Press
 
 Prints an email using the template id and content to the users account.If a video id is included, it will replace any video placeholders with that video.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 template_id = 'template_id_example' # str | The template id to be printed.
 content = 'content_example' # str | The content of the email.
 email_id = 'email_id_example' # str | The email id to be printed to. (optional)
 video_id = 'video_id_example' # str | A video to replace video place holders with. (optional)
 subject_line = 'subject_line_example' # str | The subject line to be printed. (optional)
 
-try: 
+try:
     # Create an Email with Printing Press
     api_instance.create_printing_press_email(template_id, content, email_id=email_id, video_id=video_id, subject_line=subject_line)
 except ApiException as e:
-    print "Exception when calling EmailsApi->create_printing_press_email: %s\n" % e
+    print("Exception when calling EmailsApi->create_printing_press_email: %s\n" % e)
 ```
 
 ### Parameters
@@ -81,25 +83,27 @@ Get all user templates
 
 Get all templates accessible to the current user
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 quick_send_only = true # bool | Whether to return only quick send templates. (optional)
 
-try: 
+try:
     # Get all user templates
     api_instance.get_all_templates_for_current_user(quick_send_only=quick_send_only)
 except ApiException as e:
-    print "Exception when calling EmailsApi->get_all_templates_for_current_user: %s\n" % e
+    print("Exception when calling EmailsApi->get_all_templates_for_current_user: %s\n" % e)
 ```
 
 ### Parameters
@@ -130,26 +134,28 @@ Get Email Tracking
 
 Get Tracking data for all sends of an Email
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 email_id = 'email_id_example' # str | ID of the email
 job_id = 'job_id_example' # str | ID of the Job (or null for all jobs) (optional)
 
-try: 
+try:
     # Get Email Tracking
     api_instance.get_email_tracking(email_id, job_id=job_id)
 except ApiException as e:
-    print "Exception when calling EmailsApi->get_email_tracking: %s\n" % e
+    print("Exception when calling EmailsApi->get_email_tracking: %s\n" % e)
 ```
 
 ### Parameters
@@ -181,28 +187,30 @@ Get Email Tracking Interactions
 
 Get Contact detail interactions for an Email
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 email_id = 'email_id_example' # str | ID of the email
 job_id = 'job_id_example' # str | ID of the Job (or null for all jobs) (optional)
 interaction_type = 'interaction_type_example' # str | Interaction type to order and filter by (optional)
 search_term = 'search_term_example' # str | Search term to filer by (optional)
 
-try: 
+try:
     # Get Email Tracking Interactions
     api_instance.get_email_tracking_interactions(email_id, job_id=job_id, interaction_type=interaction_type, search_term=search_term)
 except ApiException as e:
-    print "Exception when calling EmailsApi->get_email_tracking_interactions: %s\n" % e
+    print("Exception when calling EmailsApi->get_email_tracking_interactions: %s\n" % e)
 ```
 
 ### Parameters
@@ -236,27 +244,29 @@ Get Hourly Email Tracking
 
 Get Tracking data for an Email,             broken down by the hour and filterable by an Interaction type
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 email_id = 'email_id_example' # str | ID of the email
 job_id = 'job_id_example' # str | ID of the Job (or null for all jobs) (optional)
 interaction_type = 'interaction_type_example' # str | Interaction type to filter by (optional)
 
-try: 
+try:
     # Get Hourly Email Tracking
     api_instance.get_hourly_email_tracking(email_id, job_id=job_id, interaction_type=interaction_type)
 except ApiException as e:
-    print "Exception when calling EmailsApi->get_hourly_email_tracking: %s\n" % e
+    print("Exception when calling EmailsApi->get_hourly_email_tracking: %s\n" % e)
 ```
 
 ### Parameters
@@ -289,24 +299,26 @@ Get livefire feed data
 
 Get the user data for the live fire feed emails
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Get livefire feed data
     api_instance.get_live_fire_data()
 except ApiException as e:
-    print "Exception when calling EmailsApi->get_live_fire_data: %s\n" % e
+    print("Exception when calling EmailsApi->get_live_fire_data: %s\n" % e)
 ```
 
 ### Parameters
@@ -334,24 +346,26 @@ Get all quicksend templates
 
 Get all quicksend templates accessible to the user.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Get all quicksend templates
     api_instance.get_quick_send_templates()
 except ApiException as e:
-    print "Exception when calling EmailsApi->get_quick_send_templates: %s\n" % e
+    print("Exception when calling EmailsApi->get_quick_send_templates: %s\n" % e)
 ```
 
 ### Parameters
@@ -379,26 +393,28 @@ Get the HTML for a given template
 
 Get the HTML for a given template, with or without rendered variables
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 template_id = 'template_id_example' # str | The id of the template.
 render_variables = 'render_variables_example' # str | Whether to render profile variables in the returned HTML. (optional)
 
-try: 
+try:
     # Get the HTML for a given template
     api_instance.get_template_html_for_template_id(template_id, render_variables=render_variables)
 except ApiException as e:
-    print "Exception when calling EmailsApi->get_template_html_for_template_id: %s\n" % e
+    print("Exception when calling EmailsApi->get_template_html_for_template_id: %s\n" % e)
 ```
 
 ### Parameters
@@ -430,29 +446,31 @@ Get quicksend data
 
 Get the user data for quicksender, including templates and lists.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 message = 'message_example' # str | A message for the video content. (optional)
 subject = 'subject_example' # str | A subject for the video content. (optional)
 video_id = 'video_id_example' # str | A video ID. (optional)
 template_id = 'template_id_example' # str | A template ID. (optional)
 comma_delim_emails = 'comma_delim_emails_example' # str | Comma delimited emails (optional)
 
-try: 
+try:
     # Get quicksend data
     api_instance.get_video_quick_sender_data(message=message, subject=subject, video_id=video_id, template_id=template_id, comma_delim_emails=comma_delim_emails)
 except ApiException as e:
-    print "Exception when calling EmailsApi->get_video_quick_sender_data: %s\n" % e
+    print("Exception when calling EmailsApi->get_video_quick_sender_data: %s\n" % e)
 ```
 
 ### Parameters
@@ -487,27 +505,29 @@ Save quicksender settings
 
 Save the quicksender notification and default template settings
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 alert_on_play = 'alert_on_play_example' # str | A preference setting for whether or not to notify user on quicksend email video plays. (optional)
 alert_on_open = 'alert_on_open_example' # str | A preference setting for whether or not to notify user on quicksend email opens. (optional)
 template_id = 'template_id_example' # str | Id of a template to use for this send. A null value means use the default for this user. (optional)
 
-try: 
+try:
     # Save quicksender settings
     api_instance.save_quick_sender_settings(alert_on_play=alert_on_play, alert_on_open=alert_on_open, template_id=template_id)
 except ApiException as e:
-    print "Exception when calling EmailsApi->save_quick_sender_settings: %s\n" % e
+    print("Exception when calling EmailsApi->save_quick_sender_settings: %s\n" % e)
 ```
 
 ### Parameters
@@ -540,18 +560,20 @@ Send a quicksend email
 
 Send a quicksend video email to the list or users provided.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.EmailsApi()
+api_instance = bombbomb.EmailsApi(bombbomb.ApiClient(configuration))
 video_id = 'video_id_example' # str | A guid id for the video. (optional)
 email_addresses = 'email_addresses_example' # str | A semi-colon separated list of email addresses to send to. (optional)
 subject = 'subject_example' # str | Subject line for the email. (optional)
@@ -562,11 +584,11 @@ extended_properties = 'extended_properties_example' # str | Bool value that when
 template_id = 'template_id_example' # str | Id of a template to use for this send. A null value means use the default for this user. (optional)
 strip_html = 'strip_html_example' # str | remove HTML elements (optional)
 
-try: 
+try:
     # Send a quicksend email
     api_instance.video_quick_sender(video_id=video_id, email_addresses=email_addresses, subject=subject, message=message, list_ids=list_ids, scheduled_send_timestamp=scheduled_send_timestamp, extended_properties=extended_properties, template_id=template_id, strip_html=strip_html)
 except ApiException as e:
-    print "Exception when calling EmailsApi->video_quick_sender: %s\n" % e
+    print("Exception when calling EmailsApi->video_quick_sender: %s\n" % e)
 ```
 
 ### Parameters

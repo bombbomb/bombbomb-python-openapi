@@ -18,25 +18,27 @@ Add list.
 
 Add a list to the users account.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ListsApi()
+api_instance = bombbomb.ListsApi(bombbomb.ApiClient(configuration))
 list_name = 'list_name_example' # str | Name of the new list being added
 
-try: 
+try:
     # Add list.
     api_instance.add_new_list(list_name)
 except ApiException as e:
-    print "Exception when calling ListsApi->add_new_list: %s\n" % e
+    print("Exception when calling ListsApi->add_new_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -67,25 +69,27 @@ Clear Contacts from List
 
 Clears all contacts from a list.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ListsApi()
+api_instance = bombbomb.ListsApi(bombbomb.ApiClient(configuration))
 list_id = 'list_id_example' # str | The list to be cleared.
 
-try: 
+try:
     # Clear Contacts from List
     api_instance.clear_list(list_id)
 except ApiException as e:
-    print "Exception when calling ListsApi->clear_list: %s\n" % e
+    print("Exception when calling ListsApi->clear_list: %s\n" % e)
 ```
 
 ### Parameters
@@ -116,26 +120,28 @@ Copy All Contacts from a List
 
 Copy all contacts from a list.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ListsApi()
+api_instance = bombbomb.ListsApi(bombbomb.ApiClient(configuration))
 from_list_id = 'from_list_id_example' # str | The list to be cleared.
 list_id = 'list_id_example' # str | The list to be cleared.
 
-try: 
+try:
     # Copy All Contacts from a List
     api_instance.copy_list_contacts(from_list_id, list_id)
 except ApiException as e:
-    print "Exception when calling ListsApi->copy_list_contacts: %s\n" % e
+    print("Exception when calling ListsApi->copy_list_contacts: %s\n" % e)
 ```
 
 ### Parameters
@@ -167,24 +173,26 @@ Get all Lists
 
 Get all the lists for a specific user.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ListsApi()
+api_instance = bombbomb.ListsApi(bombbomb.ApiClient(configuration))
 
-try: 
+try:
     # Get all Lists
     api_instance.get_all_lists()
 except ApiException as e:
-    print "Exception when calling ListsApi->get_all_lists: %s\n" % e
+    print("Exception when calling ListsApi->get_all_lists: %s\n" % e)
 ```
 
 ### Parameters
@@ -212,25 +220,27 @@ Suppress All Contacts from List
 
 Suppresses all contacts in a list.
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.ListsApi()
+api_instance = bombbomb.ListsApi(bombbomb.ApiClient(configuration))
 list_id = 'list_id_example' # str | The list to be cleared.
 
-try: 
+try:
     # Suppress All Contacts from List
     api_instance.suppress_all_in_list(list_id)
 except ApiException as e:
-    print "Exception when calling ListsApi->suppress_all_in_list: %s\n" % e
+    print("Exception when calling ListsApi->suppress_all_in_list: %s\n" % e)
 ```
 
 ### Parameters

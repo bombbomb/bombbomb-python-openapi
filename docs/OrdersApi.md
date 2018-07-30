@@ -14,25 +14,27 @@ Deletes image from user s3 store
 
 Deletes image from user s3 store
 
-### Example 
+### Example
 ```python
+from __future__ import print_function
 import time
 import bombbomb
 from bombbomb.rest import ApiException
 from pprint import pprint
 
 # Configure OAuth2 access token for authorization: BBOAuth2
-bombbomb.configuration.access_token = 'YOUR_ACCESS_TOKEN'
+configuration = bombbomb.Configuration()
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # create an instance of the API class
-api_instance = bombbomb.OrdersApi()
+api_instance = bombbomb.OrdersApi(bombbomb.ApiClient(configuration))
 file_name = 'file_name_example' # str | Filename for deletion
 
-try: 
+try:
     # Deletes image from user s3 store
     api_instance.template_asset_delete(file_name)
 except ApiException as e:
-    print "Exception when calling OrdersApi->template_asset_delete: %s\n" % e
+    print("Exception when calling OrdersApi->template_asset_delete: %s\n" % e)
 ```
 
 ### Parameters
